@@ -2,8 +2,20 @@ import gnomeHuntImg from '../assets/gnomehunt.jpg'
 import winterWindowImg from '../assets/winterwindow.png'
 import voxelImg from '../assets/voxel.png'
 import guessWhatImg from '../assets/guesswhat.png'
+import lerryImg from '../assets/Lerry.png'
 
 export const projectsData = [
+  {
+    id: 'lerry-ai-coding-test',
+    title: 'Lerry AI - Coding Test',
+    subtitle: 'Coding test for Lennart (AI accounting service)',
+    tech: ['React', 'PHP', 'Codex'],
+    collaborators: [],
+    descriptionShort: 'A React UI + PHP bookkeeping verification validator, built together with AI pair-programming.',
+    descriptionLong:
+      'A coding test for Lennart, a company building an AI accounting service. I built a visual front-end in React and a bookkeeping verification validator in PHP. As requested, I pair-programmed with AI (Codex) to demonstrate how I work with AI tools during development.',
+    image: lerryImg,
+  },
   {
     id: 'gnome-hunt',
     title: 'Gnome Hunt',
@@ -75,4 +87,3 @@ export const projectsData = [
     },
   },
 ]
-
