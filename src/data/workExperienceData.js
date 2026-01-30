@@ -11,7 +11,7 @@ export const workExperienceData = [
     id: 'kth-teaching-assistant',
     company: 'Royal Institute of Technology',
     role: 'Teaching assistant',
-    dates: 'January 2023 - June 2023',
+    dates: 'January 2023 - February 2023',
     description:
       'I was a teaching assistant in the course DH2624 Interaction Programming and the Dynamic Web where I assisted students with their labs in JavaScript. I also debugged the automatic tests that was used in the labs.',
   },
