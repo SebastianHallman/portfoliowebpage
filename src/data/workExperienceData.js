@@ -3,9 +3,9 @@ export const workExperienceData = [
     id: 'sebbes-webbyra',
     company: 'Sebbes webbyrå',
     role: 'Owner & Founder',
-    dates: 'Summer 2020 - Present',
+    dates: 'Summer 2020 - January 2026',
     description:
-      "I started a small web agency right before my studies at KTH to be able to take small jobs and help with small tasks. I don't work actively with this, but I host a few websites for some clients and do maintenance work for them.",
+      "I started a small web agency right before my studies at KTH to be able to take small jobs and help with small tasks. I don't work actively with this, but I host a few websites for some clients and do maintenance work for them. This agency closed down in January 2026",
   },
   {
     id: 'kth-teaching-assistant',
