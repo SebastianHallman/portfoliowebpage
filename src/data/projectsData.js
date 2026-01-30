@@ -4,6 +4,8 @@ import voxelImg from '../assets/voxel.png'
 import guessWhatImg from '../assets/guesswhat.png'
 import lerryImg from '../assets/Lerry.png'
 
+const chess3dImg = '/img/3dchess.png'
+
 export const projectsData = [
   {
     id: 'lerry-ai-coding-test',
@@ -15,6 +17,22 @@ export const projectsData = [
     descriptionLong:
       'A coding test for Lennart, a company building an AI accounting service. I built a visual front-end in React and a bookkeeping verification validator in PHP. As requested, I pair-programmed with AI (Codex) to demonstrate how I work with AI tools during development.',
     image: lerryImg,
+  },
+  {
+    id: '3d-chess',
+    title: '3D Chess',
+    subtitle: 'Real-time 3D chess with Lichess integration',
+    tech: ['React', 'Three.js', 'Vite', 'Lichess API', 'Codex'],
+    collaborators: [],
+    descriptionShort: 'A 3D chess client with live games, puzzles, and smooth piece animations.',
+    descriptionLong:
+      'A 3D chess experience built with Three.js and React. It connects to Lichess for OAuth, live games, and puzzle mode, while handling move validation, animations, and a full game HUD. The focus was on responsive controls, clear game state feedback, and a polished 3D board presentation.',
+    image: chess3dImg,
+    links: {
+      demo: 'https://3dchess.d1sabl3d.com',
+      repo: '',
+      article: '',
+    },
   },
   {
     id: 'gnome-hunt',
