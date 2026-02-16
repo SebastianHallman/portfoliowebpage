@@ -5,8 +5,31 @@ import guessWhatImg from '../assets/guesswhat.png'
 import lerryImg from '../assets/Lerry.png'
 
 const chess3dImg = '/img/3dchess.png'
+const thesisImg = '/img/thesis.jpg'
 
 export const projectsData = [
+  {
+    id: 'calmakit-masters-thesis',
+    title: 'Exploring the use of shape-shifting haptic technology to reduce excessive muscle activity in individuals with Cerebral Palsy',
+    subtitle: "Master's thesis, KTH ",
+    tech: [
+      'Cerebral Palsy',
+      'Haptic Technology',
+      'Human-Computer Interaction',
+      'Autobiographical Study',
+      'Wearable Prototype',
+    ],
+    collaborators: [],
+    descriptionShort:
+      'A KTH master thesis on CalmaKit, a shape-shifting haptic wearable and app for managing spasticity in Cerebral Palsy.',
+    descriptionLong:
+      'This thesis explores shape-shifting haptic technology as a way to reduce excessive muscle activity (spasticity) in individuals with Cerebral Palsy. Using an autobiographical design process, I developed CalmaKit: a wearable band and companion app for controlled, personalized pressure patterns. Findings showed reduced perceived muscle stiffness, with body-map data indicating clear signs of eased spasticity, while also highlighting the need for further research to evaluate why the effect occurs and how effective the prototype is long-term.',
+    dates: { start: '2025-01-01', end: '2025-12-31' },
+    image: thesisImg,
+    links: {
+      article: 'https://www.diva-portal.org/smash/record.jsf?pid=diva2:2037729',
+    },
+  },
   {
     id: 'lerry-ai-coding-test',
     title: 'Lerry AI - Coding Test',
