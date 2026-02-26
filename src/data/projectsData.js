@@ -13,10 +13,11 @@ export const projectsData = [
     title: 'Exploring the use of shape-shifting haptic technology to reduce excessive muscle activity in individuals with Cerebral Palsy',
     subtitle: "Master's thesis, KTH ",
     tech: [
-      'Cerebral Palsy',
+      'Autobiographical Study',
       'Haptic Technology',
       'Human-Computer Interaction',
-      'Autobiographical Study',
+      'Flutter',
+      'Arduino',
       'Wearable Prototype',
     ],
     collaborators: [],
@@ -40,6 +41,8 @@ export const projectsData = [
     descriptionLong:
       'A coding test for Lennart, a company building an AI accounting service. I built a visual front-end in React and a bookkeeping verification validator in PHP. As requested, I pair-programmed with AI (Codex) to demonstrate how I work with AI tools during development.',
     image: lerryImg,
+    imagePosition: 'left top',
+    imageScale: 1.22,
   },
   {
     id: '3d-chess',
@@ -51,6 +54,8 @@ export const projectsData = [
     descriptionLong:
       'A 3D chess experience built with Three.js and React. It connects to Lichess for OAuth, live games, and puzzle mode, while handling move validation, animations, and a full game HUD. The focus was on responsive controls, clear game state feedback, and a polished 3D board presentation.',
     image: chess3dImg,
+    imagePosition: 'center 55%',
+    imageScale: 1.1,
     links: {
       demo: 'https://3dchess.d1sabl3d.com',
       repo: '',

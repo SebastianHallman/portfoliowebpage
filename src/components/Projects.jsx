@@ -15,7 +15,7 @@ export default function Projects() {
   return (
     <div
       id="projects"
-      className='h-screen w-[90%] text-[#FAFDF6] flex justify-center mx-auto items-center flex-col snap-start relative'
+      className='min-h-screen lg:h-screen w-[90%] text-[#FAFDF6] flex justify-center mx-auto items-center flex-col snap-start relative py-16 lg:py-0'
     >
       <h1 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>
         Projects

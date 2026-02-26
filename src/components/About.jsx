@@ -26,7 +26,7 @@ export default function About() {
 
 
   return (
-    <div id="about" className='h-screen w-[90%] text-[#FAFDF6] flex flex-col mx-auto items-center lg:flex-row snap-start gap-8 overflow-hidden'>
+    <div id="about" className='min-h-screen lg:h-screen w-[90%] text-[#FAFDF6] flex flex-col mx-auto items-center lg:flex-row snap-start gap-8 overflow-visible lg:overflow-hidden py-16 lg:py-0'>
         <div className='flex flex-col w-full min-h-0'>
             <h1 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>About Me</h1>
             <p className='text-lg lg:text-xl font-medium lg:max-w-3xl p-6 text-center lg:text-left'>I'm Sebastian, a curious media technology enthusiast with a Master's in Media Technology. I build dynamic, accessible web experiences and enjoy exploring unfamiliar problems. I work mainly with JavaScript, HTML, and CSS, using frameworks like React and Vue, and I actively seek out new knowledge to improve my work.</p>
@@ -35,7 +35,7 @@ export default function About() {
 
         <div className='flex flex-col w-full min-h-0'>
             <h1 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>Skills</h1>
-            <div className='grid grid-cols-2 md:grid-cols-3 gap-6 lg:justify-start w-full flex-1 min-h-0 overflow-y-auto'>
+            <div className='grid grid-cols-2 md:grid-cols-3 gap-6 lg:justify-start w-full lg:flex-1 lg:min-h-0 lg:overflow-y-auto'>
                 {skills.map((skill, index) => (
                     <SkillCard key={index} skill={skill.name} Icon={skill.Icon} />
                 ))}
