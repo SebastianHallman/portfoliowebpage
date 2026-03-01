@@ -6,6 +6,7 @@ import lerryImg from '../assets/Lerry.png'
 
 const chess3dImg = '/img/3dchess.png'
 const thesisImg = '/img/thesis.jpg'
+const speedyWriterImg = '/img/speedyWriter.png'
 
 export const projectsData = [
   {
@@ -43,6 +44,22 @@ export const projectsData = [
     image: lerryImg,
     imagePosition: 'left top',
     imageScale: 1.22,
+  },
+  {
+    id: 'speedy-writer',
+    title: 'Speedy Writer',
+    subtitle: 'Desktop word prediction overlay',
+    tech: ['Python', 'Windows', 'Assistive software', 'Codex'],
+    collaborators: [],
+    descriptionShort: 'A lightweight desktop overlay that suggests word completions as you type, with local learning and F1–F10 shortcuts.',
+    descriptionLong:
+      'Speedy Writer is a free, open-source desktop overlay for Windows that provides real-time word completion suggestions as you type — anywhere on your system. It shows up to 10 predictions for the current prefix, accepts them instantly via F1–F10 shortcuts, and learns from your usage over time without ever sending data to the cloud. The interface is fully customizable (colors, font, transparency) and ships with both English and Swedish wordlists, with support for custom wordlists via plain text files. This project is heavily inspired by Eurovocs Skippy',
+    image: speedyWriterImg,
+    imagePosition: 'left top',
+    links: {
+      site: 'https://sebastianhallman.github.io/word_predictor/',
+      repo: 'https://github.com/sebastianhallman/word_predictor',
+    },
   },
   {
     id: '3d-chess',
