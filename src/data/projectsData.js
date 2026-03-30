@@ -1,3 +1,4 @@
+import myMathBookImg from '../assets/myMathBook.png'
 import gnomeHuntImg from '../assets/gnomehunt.jpg'
 import winterWindowImg from '../assets/winterwindow.png'
 import voxelImg from '../assets/voxel.png'
@@ -30,6 +31,20 @@ export const projectsData = [
     image: thesisImg,
     links: {
       article: 'https://www.diva-portal.org/smash/record.jsf?pid=diva2:2037729',
+    },
+  },
+  {
+    id: 'mymathbook',
+    title: 'MyMathBook',
+    subtitle: 'Google Docs for math',
+    tech: ['React', 'TypeScript', 'LaTeX', 'Real-time Collaboration', 'Auth', 'Claude Code'],
+    collaborators: [],
+    descriptionShort: 'A collaborative WYSIWYG math editor with real-time sync — like Google Docs, built for mathematics.',
+    descriptionLong:
+      'MyMathBook is a fullstack collaborative document editor designed for writing mathematics. It features a WYSIWYG LaTeX editor so you can write equations naturally without raw markup, real-time collaboration so multiple users can edit simultaneously, and user authentication to manage your documents. Right now it is free with 10 docs / account, but I have plans for a pro version with more features and unlimited docs. The project was built using React and TypeScript on the frontend, with a Node.js backend and Claude Code for AI-assisted features.',
+    image: myMathBookImg,
+    links: {
+      site: 'https://mymathbook-production.up.railway.app/',
     },
   },
   {
