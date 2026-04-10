@@ -1,11 +1,49 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { MessageCircle, Send, X } from 'lucide-react'
 import { getChatResponse } from '../api/openRouter'
+import { projectsData } from '../data/projectsData'
+import ProjectModal from './ProjectModal'
+import ProjectMiniCard from './ProjectMiniCard'
+import ChatContactCard from './ChatContactCard'
+
+const projectById = Object.fromEntries(projectsData.map(p => [p.id, p]))
+
+function parseResponse(raw) {
+  const extract = parsed => ({
+    text: parsed.message,
+    projectIds: Array.isArray(parsed.projectIds) ? parsed.projectIds : [],
+    showContact: parsed.showContact === true,
+  })
+
+  try {
+    const parsed = JSON.parse(raw)
+    if (parsed && typeof parsed.message === 'string') return extract(parsed)
+  } catch { /* continue */ }
+
+  const match = raw.match(/\{[\s\S]*"message"[\s\S]*\}/)
+  if (match) {
+    try {
+      const parsed = JSON.parse(match[0])
+      if (parsed && typeof parsed.message === 'string') return extract(parsed)
+    } catch { /* continue */ }
+  }
+
+  const stripped = raw.replace(/```[\s\S]*?```/g, '').replace(/\{[\s\S]*"projectIds"[\s\S]*\}/g, '').trim()
+  return { text: stripped || raw, projectIds: [], showContact: false }
+}
+
 
 export default function ChatBox() {
   const [isOpen, setIsOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(null)
   const [messages, setMessages] = useState([
-    { id: 1, text: "Hey! Ask me anything about Sebastian's work, skills, or experience. (I am an AI assistant, I make mistakes sometimes.)", sender: 'bot' }
+    {
+      id: 1,
+      text: "Hey! Ask me anything about Sebastian's work, skills, or experience. (I am an AI assistant, I make mistakes sometimes.)",
+      sender: 'bot',
+      projectIds: [],
+      showContact: false,
+    },
   ])
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
@@ -25,22 +63,30 @@ export default function ChatBox() {
 
   const handleSend = () => {
     if (!input.trim()) return
-    const newMessage = { id: Date.now(), text: input.trim(), sender: 'user' }
+    const newMessage = { id: Date.now(), text: input.trim(), sender: 'user', projectIds: [], showContact: false }
     const newMessages = [...messages, newMessage]
     setMessages(newMessages)
-
     setInput('')
     setIsTyping(true)
+
     getChatResponse(newMessages).then(response => {
       setIsTyping(false)
-      if (response.choices && response.choices[0] && response.choices[0].message) {
-      setMessages(prev => [...prev, { id: Date.now(), text: response.choices[0].message.content, sender: 'bot' }])
-        } else {
-            setMessages(prev => [...prev, { id: Date.now(), text: "Sorry, I couldn't get a response. Please try again or contact Sebastian directly (see contact section).", sender: 'bot' }])
-        }
+      if (response.choices?.[0]?.message) {
+        const { text, projectIds, showContact } = parseResponse(response.choices[0].message.content)
+        setMessages(prev => [...prev, { id: Date.now(), text, sender: 'bot', projectIds, showContact }])
+      } else {
+        setMessages(prev => [
+          ...prev,
+          {
+            id: Date.now(),
+            text: "Sorry, I couldn't get a response. Please try again or contact Sebastian directly (see contact section).",
+            sender: 'bot',
+            projectIds: [],
+            showContact: false,
+          },
+        ])
+      }
     })
-
-
   }
 
   return (
@@ -98,15 +144,21 @@ export default function ChatBox() {
               key={msg.id}
               className={`chat-msg flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
             >
-              <div
-                className={[
-                  'max-w-[82%] px-3 py-2 text-sm leading-relaxed',
-                  msg.sender === 'user'
-                    ? 'bg-[#DDD92A] text-black font-medium rounded-[1rem_1rem_0.25rem_1rem]'
-                    : 'bg-white/5.5 border border-white/8 text-[rgba(250,253,246,0.88)] rounded-[1rem_1rem_1rem_0.25rem]',
-                ].join(' ')}
-              >
-                {msg.text}
+              <div className="max-w-[82%] flex flex-col gap-0">
+                <div
+                  className={[
+                    'px-3 py-2 text-sm leading-relaxed',
+                    msg.sender === 'user'
+                      ? 'bg-[#DDD92A] text-black font-medium rounded-[1rem_1rem_0.25rem_1rem]'
+                      : 'bg-white/5.5 border border-white/8 text-[rgba(250,253,246,0.88)] rounded-[1rem_1rem_1rem_0.25rem]',
+                  ].join(' ')}
+                >
+                  {msg.text}
+                </div>
+                {msg.projectIds?.map(id => projectById[id] && (
+                  <ProjectMiniCard key={id} project={projectById[id]} onOpen={() => setSelectedProject(projectById[id])} />
+                ))}
+                {msg.showContact && <ChatContactCard />}
               </div>
             </div>
           ))}
@@ -153,6 +205,8 @@ export default function ChatBox() {
           </div>
         </div>
       </div>
+
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
 
       {/* Toggle button */}
       <button
