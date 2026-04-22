@@ -44,7 +44,7 @@ export const projectsData = [
       'MyMathBook is a fullstack collaborative document editor designed for writing mathematics. It features a WYSIWYG LaTeX editor so you can write equations naturally without raw markup, real-time collaboration so multiple users can edit simultaneously, and user authentication to manage your documents. Right now it is free with 10 docs / account.',
     image: myMathBookImg,
     links: {
-      site: 'https://mymathbook-production.up.railway.app/',
+      site: 'https://mymathbook.sebastianhallman.com',
     },
   },
   {
