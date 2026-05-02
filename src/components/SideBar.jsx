@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react';
 
 export default function SideBar() {
@@ -14,10 +15,8 @@ export default function SideBar() {
         { name: 'About', href: '#about' },
         { name: 'Work Experience', href: '#work' },
         { name: 'Projects', href: '#projects' },
-        { name: 'Blog', href: '#blog' },
         { name: 'Contact', href: '#contact' },
     ];
-
 
   return (
     <div>
@@ -28,6 +27,9 @@ export default function SideBar() {
                 <a key={index} href={item.href} className='text-[#EAE151] opacity-50 hover:opacity-100 transition duration-300'>{item.name}</a>
                 </div>
             ))}
+            <Link to='/blog' className='text-[#EAE151] opacity-50 hover:opacity-100 transition duration-300'>
+                Blog
+            </Link>
         </div>
     </div>
         <div className='lg:hidden text-[#EAE151]'>
@@ -35,7 +37,8 @@ export default function SideBar() {
         <div className='fixed inset-0 z-40 flex flex-col items-center gap-8 bg-black/75 justify-center' style={{display: isOpen ? 'flex' : 'none'}}>
             {menuItems.map((item, index) => (
                 <a key={index} href={item.href} className='text-[#EAE151] text-2xl' onClick={toggleMenu}>{item.name}</a>
-            ))} 
+            ))}
+            <Link to='/blog' className='text-[#EAE151] text-2xl' onClick={toggleMenu}>Blog</Link>
         </div>
     </div>
     </div>
