@@ -14,6 +14,7 @@ export default function SideBar() {
         { name: 'About', href: '#about' },
         { name: 'Work Experience', href: '#work' },
         { name: 'Projects', href: '#projects' },
+        { name: 'Blog', href: '#blog' },
         { name: 'Contact', href: '#contact' },
     ];
 

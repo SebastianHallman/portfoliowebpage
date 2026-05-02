@@ -5,6 +5,7 @@ import About from './components/About'
 import Projects from './components/Projects'
 import WorkExperience from './components/WorkExperience'
 import Contact from './components/Contact'
+import Blog from './components/Blog'
 import ChatBox from './components/ChatBox'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <About />
         <WorkExperience />
         <Projects />
+        <Blog />
         <Contact />
       </div>
       <ChatBox />
