@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import SocialLinks from './SocialLinks'
 
 export default function Hero() {
@@ -15,12 +16,20 @@ export default function Hero() {
           M.Sc. in Media Technology
         </h2>
         <br />
-        <a
-          href='#projects'
-          className='block bg-transparent rounded-full ring ring-[#EAE151] mt-4 px-5 py-2.5 w-fit text-[#EAE151] mx-auto lg:mx-0 opacity-50 hover:opacity-100 transition duration-300'
-        >
-          View projects
-        </a>
+        <div className='flex gap-3 mt-4 mx-auto lg:mx-0 w-fit'>
+          <a
+            href='#projects'
+            className='block bg-transparent rounded-full ring ring-[#EAE151] px-5 py-2.5 w-fit text-[#EAE151] opacity-50 hover:opacity-100 transition duration-300'
+          >
+            View projects
+          </a>
+          <Link
+            to='/blog'
+            className='block bg-[#DDD92A] rounded-full px-5 py-2.5 w-fit text-black font-semibold opacity-80 hover:opacity-100 transition duration-300'
+          >
+            Read blog
+          </Link>
+        </div>
       </div>
       <div className='flex flex-col justify-center items-center w-full lg:w-1/2 px-4'>
         <div className='relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl'>
