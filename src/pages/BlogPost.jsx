@@ -23,6 +23,12 @@ const mdxComponents = {
   blockquote: (props) => <blockquote className='border-l-4 border-[#DDD92A] pl-4 italic text-slate-400 mb-4' {...props} />,
   hr: () => <hr className='border-slate-700 my-8' />,
   strong: (props) => <strong className='font-bold text-[#FAFDF6]' {...props} />,
+  img: ({ src, alt }) => (
+    <figure className='my-8'>
+      <img src={src} alt={alt} className='w-full rounded-xl object-cover shadow-lg shadow-black/40' loading='lazy' />
+      {alt && <figcaption className='text-center text-sm text-slate-500 mt-2'>{alt}</figcaption>}
+    </figure>
+  ),
 }
 
 export default function BlogPost() {
@@ -31,7 +37,7 @@ export default function BlogPost() {
 
   if (!post) return <Navigate to='/blog' replace />
 
-  const { Content, title, subtitle, date, category } = post
+  const { Content, title, subtitle, date, category, image } = post
 
   return (
     <div className='bg-black min-h-screen text-[#FAFDF6]'>
@@ -39,6 +45,15 @@ export default function BlogPost() {
         <Link to='/blog' className='text-sm text-[#EAE151] opacity-60 hover:opacity-100 transition mb-10 inline-block'>
           ← All posts
         </Link>
+
+        {image && (
+          <img
+            src={image}
+            alt={title}
+            className='w-full rounded-2xl object-cover max-h-72 shadow-lg shadow-black/40 mb-8'
+            loading='eager'
+          />
+        )}
 
         <div className='flex items-center gap-3 mb-4'>
           <span className='text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold'>
