@@ -70,13 +70,15 @@ export default function BlogPost() {
         )}
 
         <div className='flex items-center gap-3 mb-4'>
-          <span className='text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold'>
-            {category}
-          </span>
+          {category && (
+            <span className='text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold'>
+              {category}
+            </span>
+          )}
           <span className='text-xs text-slate-500'>{date}</span>
         </div>
 
-        <h1 className='text-4xl font-bold mb-2'>{title}</h1>
+        <h1 className='text-4xl text-[#EAE151] font-bold mb-2'>{title}</h1>
         <p className='text-lg text-[#EAE151] opacity-70 mb-10'>{subtitle}</p>
 
         <hr className='border-slate-800 mb-10' />
