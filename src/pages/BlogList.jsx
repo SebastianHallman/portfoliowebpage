@@ -26,19 +26,29 @@ export default function BlogList() {
             <Link
               key={post.id}
               to={`/blog/${post.id}`}
-              className='group block border border-slate-800 rounded-2xl p-6 hover:border-[#DDD92A] transition duration-300'
+              className='group block border border-slate-800 rounded-2xl overflow-hidden hover:border-[#DDD92A] transition duration-300'
             >
-              <div className='flex items-center gap-3 mb-3'>
-                <span className='text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold'>
-                  {post.category}
-                </span>
-                <span className='text-xs text-slate-500'>{post.date}</span>
+              {post.image && (
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className='w-full h-48 object-cover'
+                  loading='lazy'
+                />
+              )}
+              <div className='p-6'>
+                <div className='flex items-center gap-3 mb-3'>
+                  <span className='text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold'>
+                    {post.category}
+                  </span>
+                  <span className='text-xs text-slate-500'>{post.date}</span>
+                </div>
+                <h2 className='text-2xl font-bold group-hover:text-[#DDD92A] transition duration-300 mb-1'>
+                  {post.title}
+                </h2>
+                <p className='text-sm text-[#EAE151] opacity-70 mb-3'>{post.subtitle}</p>
+                <p className='text-slate-400 leading-relaxed'>{post.excerpt}</p>
               </div>
-              <h2 className='text-2xl font-bold group-hover:text-[#DDD92A] transition duration-300 mb-1'>
-                {post.title}
-              </h2>
-              <p className='text-sm text-[#EAE151] opacity-70 mb-3'>{post.subtitle}</p>
-              <p className='text-slate-400 leading-relaxed'>{post.excerpt}</p>
             </Link>
           ))}
         </div>
