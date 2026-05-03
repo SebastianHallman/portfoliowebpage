@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 const modules = import.meta.glob('../posts/*.mdx', { eager: true })
 
@@ -41,6 +42,19 @@ export default function BlogPost() {
 
   return (
     <div className='bg-black min-h-screen text-[#FAFDF6]'>
+      <Helmet>
+        <title>{title} — Sebastian Hällman</title>
+        <meta name='description' content={subtitle} />
+        <meta property='og:type' content='article' />
+        <meta property='og:title' content={title} />
+        <meta property='og:description' content={subtitle} />
+        <meta property='og:url' content={`https://sebastianhallman.com/blog/${slug}`} />
+        {image && <meta property='og:image' content={`https://sebastianhallman.com${image}`} />}
+        <meta name='twitter:card' content={image ? 'summary_large_image' : 'summary'} />
+        <meta name='twitter:title' content={title} />
+        <meta name='twitter:description' content={subtitle} />
+        {image && <meta name='twitter:image' content={`https://sebastianhallman.com${image}`} />}
+      </Helmet>
       <div className='max-w-2xl mx-auto px-6 py-16'>
         <Link to='/blog' className='text-sm text-[#EAE151] opacity-60 hover:opacity-100 transition mb-10 inline-block'>
           ← All posts
