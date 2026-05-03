@@ -38,9 +38,11 @@ export default function BlogList() {
               )}
               <div className='p-6'>
                 <div className='flex items-center gap-3 mb-3'>
-                  <span className='text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold'>
-                    {post.category}
-                  </span>
+                  {post.category && (
+                    <span className='text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold'>
+                      {post.category}
+                    </span>
+                  )}
                   <span className='text-xs text-slate-500'>{post.date}</span>
                 </div>
                 <h2 className='text-2xl font-bold group-hover:text-[#DDD92A] transition duration-300 mb-1'>
