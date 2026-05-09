@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import 'highlight.js/styles/github-dark.css'
 
 const modules = import.meta.glob('../posts/*.mdx', { eager: true })
 
@@ -18,8 +19,11 @@ const mdxComponents = {
   ul: (props) => <ul className='list-disc list-inside mb-4 space-y-1 text-slate-200' {...props} />,
   ol: (props) => <ol className='list-decimal list-inside mb-4 space-y-1 text-slate-200' {...props} />,
   li: (props) => <li className='ml-2' {...props} />,
-  code: (props) => <code className='bg-slate-800 text-[#DDD92A] px-1.5 py-0.5 rounded text-sm font-mono' {...props} />,
-  pre: (props) => <pre className='bg-slate-800 rounded-xl p-4 mb-4 overflow-x-auto text-sm font-mono text-slate-200' {...props} />,
+  code: ({ className, ...props }) =>
+    className
+      ? <code className={className} {...props} />
+      : <code className='bg-slate-800 text-[#DDD92A] px-1.5 py-0.5 rounded text-sm font-mono' {...props} />,
+  pre: (props) => <pre className='rounded-xl mb-4 overflow-x-auto text-sm' {...props} />,
   a: (props) => <a className='text-[#DDD92A] underline hover:opacity-80 transition' target='_blank' rel='noreferrer' {...props} />,
   blockquote: (props) => <blockquote className='border-l-4 border-[#DDD92A] pl-4 italic text-slate-400 mb-4' {...props} />,
   hr: () => <hr className='border-slate-700 my-8' />,
