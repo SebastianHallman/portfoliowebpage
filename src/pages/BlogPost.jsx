@@ -68,7 +68,7 @@ export default function BlogPost() {
           <img
             src={image}
             alt={title}
-            className='w-full rounded-2xl object-cover max-h-72 shadow-lg shadow-black/40 mb-8'
+            className='w-full rounded-2xl shadow-lg shadow-black/40 mb-8'
             loading='eager'
           />
         )}
