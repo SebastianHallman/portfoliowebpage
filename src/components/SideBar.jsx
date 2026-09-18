@@ -24,10 +24,10 @@ export default function SideBar() {
         <div className='flex flex-col items-center gap-8'>
             {menuItems.map((item, index) => (
                 <div className='flex' key={index}>
-                <a key={index} href={item.href} className='text-[#EAE151] opacity-50 hover:opacity-100 transition duration-300'>{item.name}</a>
+                <a key={index} href={item.href} className='text-[#FAFDF6]/90 hover:text-[#DDD92A] transition duration-300'>{item.name}</a>
                 </div>
             ))}
-            <Link to='/blog' className='text-[#EAE151] opacity-50 hover:opacity-100 transition duration-300'>
+            <Link to='/blog' className='text-[#FAFDF6]/90 hover:text-[#DDD92A] transition duration-300'>
                 Blog
             </Link>
         </div>

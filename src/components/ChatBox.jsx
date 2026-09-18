@@ -35,6 +35,7 @@ function parseResponse(raw) {
 
 export default function ChatBox() {
   const [isOpen, setIsOpen] = useState(false)
+  const [showFab, setShowFab] = useState(false)
   const [selectedProject, setSelectedProject] = useState(null)
   const [messages, setMessages] = useState([
     {
@@ -60,6 +61,24 @@ export default function ChatBox() {
       return () => clearTimeout(t)
     }
   }, [isOpen])
+
+  useEffect(() => {
+    const hero = document.getElementById('start')
+    if (!hero) {
+      setShowFab(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowFab(!entry.isIntersecting)
+      },
+      { threshold: 0.35 },
+    )
+
+    observer.observe(hero)
+    return () => observer.disconnect()
+  }, [])
 
   const handleSend = () => {
     if (!input.trim()) return
@@ -212,15 +231,19 @@ export default function ChatBox() {
       <button
         onClick={() => setIsOpen(o => !o)}
         className={[
-          'fixed bottom-4 right-4 w-12 h-12 rounded-full flex items-center justify-center z-50 transition-all duration-300',
+          'fixed bottom-4 right-4 w-9 h-9 rounded-full flex items-center justify-center z-40 transition-all duration-300',
           isOpen
-            ? 'bg-slate-950 border border-[rgba(221,217,42,0.35)] text-[#DDD92A] shadow-[0_4px_20px_rgba(0,0,0,0.6)]'
-            : 'bg-[#DDD92A] border border-transparent text-black shadow-[0_4px_24px_rgba(221,217,42,0.4)]',
+            ? 'bg-slate-950 border border-[rgba(221,217,42,0.35)] text-[#DDD92A] shadow-[0_2px_10px_rgba(0,0,0,0.5)]'
+            : 'bg-[#DDD92A] border border-transparent text-black shadow-[0_2px_10px_rgba(0,0,0,0.35)]',
+          showFab || isOpen
+            ? 'opacity-100 pointer-events-auto scale-100'
+            : 'opacity-0 pointer-events-none scale-90',
         ].join(' ')}
         aria-label={isOpen ? 'Close chat' : 'Open chat'}
+        tabIndex={showFab || isOpen ? 0 : -1}
       >
         <div className={`transition-transform duration-300 ${isOpen ? 'rotate-90' : 'rotate-0'}`}>
-          {isOpen ? <X size={20} /> : <MessageCircle size={20} />}
+          {isOpen ? <X size={16} /> : <MessageCircle size={16} />}
         </div>
       </button>
     </>
