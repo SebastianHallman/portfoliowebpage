@@ -48,9 +48,16 @@ export default function ProjectModal({ project, onClose }) {
 
         <div className='p-6 pt-4 flex flex-col gap-4 flex-1 overflow-y-auto min-h-0'>
           <div>
-            <h3 id='project-modal-title' className='text-3xl font-bold'>
-              {project.title}
-            </h3>
+            <div className='flex flex-wrap items-center gap-2'>
+              <h3 id='project-modal-title' className='text-3xl font-bold'>
+                {project.title}
+              </h3>
+              {project.badge && (
+                <span className='text-xs font-semibold tracking-wide uppercase bg-[#DDD92A] text-black px-2 py-0.5 rounded-full'>
+                  {project.badge}
+                </span>
+              )}
+            </div>
             <p className='text-lg text-[#EAE151] opacity-80'>{project.subtitle}</p>
           </div>
 

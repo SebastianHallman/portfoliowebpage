@@ -1,46 +1,53 @@
 import React from 'react'
-import SkillCard from './SkillCard';
-import { SiHtml5, SiCss3, SiJavascript, SiReact, SiNodedotjs, SiUnity, SiFirebase, SiFlutter, SiWordpress, SiPhp, SiMysql, SiPython, SiOpenai, SiOpenaigym, SiChessdotcom } from 'react-icons/si';
-import { FaVideo } from 'react-icons/fa';
+
+const skillGroups = [
+  {
+    name: 'Frontend',
+    items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'React Native', 'Vue', 'Three.js'],
+  },
+  {
+    name: 'Backend & CMS',
+    items: ['Node.js', 'Python', 'PHP', 'Django', 'MySQL', 'Firebase', 'WordPress'],
+  },
+  {
+    name: 'Hardware',
+    items: ['Flutter', 'Arduino'],
+  },
+  {
+    name: 'AI tools',
+    items: ['Cursor', 'Codex', 'Claude'],
+  },
+]
 
 export default function About() {
-
-    const skills = [
-    { name: 'HTML', Icon: SiHtml5 },
-    { name: 'CSS', Icon: SiCss3 },
-    { name: 'JavaScript', Icon: SiJavascript },
-    { name: 'React', Icon: SiReact },
-    { name: 'Node.js', Icon: SiNodedotjs },
-    { name: 'Unity', Icon: SiUnity },
-    { name: 'Firebase', Icon: SiFirebase },
-    { name: 'Flutter', Icon: SiFlutter },
-    { name: 'Video editing', Icon: FaVideo },
-    { name: 'WordPress', Icon: SiWordpress },
-    { name: 'PHP', Icon: SiPhp },
-    { name: 'MySQL', Icon: SiMysql },
-    { name: 'Python', Icon: SiPython },
-    { name: 'Codex', Icon: SiOpenai },
-    { name: 'Chess', Icon: SiChessdotcom },
-
-];
-
-
   return (
-    <div id="about" className='min-h-screen lg:h-screen w-[90%] text-[#FAFDF6] flex flex-col mx-auto items-center lg:flex-row snap-start gap-8 overflow-visible lg:overflow-hidden py-16 lg:py-0'>
-        <div className='flex flex-col w-full min-h-0'>
-            <h1 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>About Me</h1>
-            <p className='text-lg lg:text-xl font-medium lg:max-w-3xl p-6 text-center lg:text-left'>I'm Sebastian, a curious media technology enthusiast with a Master's in Media Technology. I build dynamic, accessible web experiences and enjoy exploring unfamiliar problems. I work mainly with JavaScript, HTML, and CSS, using frameworks like React and Vue, and I actively seek out new knowledge to improve my work.</p>
-            
-        </div>
+    <div
+      id="about"
+      className='min-h-screen w-[90%] max-w-4xl text-[#FAFDF6] flex flex-col mx-auto items-center justify-center snap-start overflow-visible py-24 lg:py-32'
+    >
+      <h1 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A]'>About Me</h1>
+      <p className='mt-8 text-lg lg:text-xl font-medium max-w-2xl text-center leading-relaxed text-[#FAFDF6]/85'>
+        I&apos;m Sebastian, a recently graduated media technologist from KTH. I build accessible web products and like unfamiliar problems — collaborative editors, wearables, and 3D on the web — with a background in HCI.
+      </p>
 
-        <div className='flex flex-col w-full min-h-0'>
-            <h1 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>Skills</h1>
-            <div className='grid grid-cols-2 md:grid-cols-3 gap-6 lg:justify-start w-full lg:flex-1 lg:min-h-0 lg:overflow-y-auto'>
-                {skills.map((skill, index) => (
-                    <SkillCard key={index} skill={skill.name} Icon={skill.Icon} />
-                ))}
-            </div>
-        </div>
+      <h2 className='mt-20 lg:mt-24 text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A]'>Skills</h2>
+      <div className='mt-12 w-full flex flex-col gap-10 lg:gap-12'>
+        {skillGroups.map((group) => (
+          <div key={group.name} className='flex flex-col items-center gap-4'>
+            <p className='text-sm uppercase tracking-[0.22em] text-[#EAE151]'>{group.name}</p>
+            <ul className='flex flex-wrap justify-center gap-3'>
+              {group.items.map((item) => (
+                <li
+                  key={item}
+                  className='text-sm text-[#FAFDF6] px-4 py-1.5 rounded-full ring-1 ring-[#FAFDF6]/15 bg-white/5'
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

@@ -5,7 +5,7 @@ export default function WorkExperience() {
   return (
     <div
       id='work'
-      className='min-h-screen lg:h-screen w-[90%] text-[#FAFDF6] flex flex-col mx-auto items-center snap-start gap-6 overflow-visible lg:overflow-hidden py-16 lg:py-0'
+      className='min-h-screen w-[90%] text-[#FAFDF6] flex flex-col mx-auto items-center snap-start gap-6 overflow-visible py-16 lg:py-8'
     >
       <div className='w-full'>
         <h1 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>
@@ -13,7 +13,7 @@ export default function WorkExperience() {
         </h1>
       </div>
 
-      <div className='w-full lg:flex-1 lg:min-h-0 px-6 pb-6 lg:overflow-y-auto'>
+      <div className='w-full px-6 pb-6'>
         <div className='flex flex-col gap-6'>
           {workExperienceData.map((job) => (
             <div

@@ -20,7 +20,7 @@ export default function Portfolio() {
       <div className='flex-1 h-full align-middle'>
         <SideBar />
       </div>
-      <div className='w-full pt-12 lg:pt-0 lg:ml-[10%] h-screen overflow-y-scroll md:snap-y md:snap-mandatory scroll-smooth'>
+      <div className='w-full pt-12 lg:pt-0 lg:ml-[10%] h-screen overflow-y-scroll md:snap-y md:snap-proximity scroll-smooth scroll-pt-16 lg:scroll-pt-0'>
         <Hero />
         <About />
         <WorkExperience />
