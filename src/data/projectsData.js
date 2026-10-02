@@ -51,6 +51,24 @@ export const projectsData = [
     },
   },
   {
+    id: 'mitt-schack',
+    featured: true,
+    title: 'Mitt Schack',
+    subtitle: 'A companion app for Swedish chess players',
+    badge: 'Coming to Android',
+    tech: ['React Native', 'Expo', 'TypeScript', 'Schack.se API'],
+    collaborators: [],
+    descriptionShort:
+      'Ratings, matches, tournaments, and club results in one place for Swedish chess players.',
+    descriptionLong:
+      'Mitt Schack is a mobile app I am building for Swedish chess players and club members. It brings together data from the Swedish Chess Federation: follow your rating history, upcoming matches, tournament results, and club competitions. You can also search players, explore leaderboards, and replay games when notation is available. The user can connect their chess player ID to get relevant information with ease, and this is all done locally. No account required. Built with React Native, Expo, and TypeScript, the app is coming to Android.',
+    image: '/img/mitt-schack.png',
+    imagePosition: 'center 35%',
+    links: {
+      site: 'https://mittschack.sebastianhallman.com',
+    },
+  },
+  {
     id: 'speedy-writer',
     featured: true,
     title: 'Speedy Writer',
