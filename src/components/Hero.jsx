@@ -45,13 +45,27 @@ export default function Hero() {
         </div>
       </div>
       <div className='flex flex-col justify-center items-center w-full lg:w-1/2 px-4'>
-        <div className='relative w-full max-w-[9.5rem] sm:max-w-xs md:max-w-md lg:max-w-xl'>
+        <div className='relative w-full max-w-[15rem] sm:max-w-xs lg:max-w-sm'>
           <img
-            className='w-full h-auto max-h-36 sm:max-h-none object-cover object-top block rounded-xl shadow-lg shadow-black/30'
-            src='/img/photo.jpg'
-            alt='Portrait'
+            className='w-full h-auto max-h-[48svh] lg:max-h-[78svh] object-contain object-bottom block'
+            style={{
+              maskImage: 'linear-gradient(to bottom, black 48%, rgba(0, 0, 0, 0.65) 64%, rgba(0, 0, 0, 0.15) 82%, transparent 96%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 48%, rgba(0, 0, 0, 0.65) 64%, rgba(0, 0, 0, 0.15) 82%, transparent 96%)',
+            }}
+            src='/img/sebastian-outside-cutout.png'
+            alt='Sebastian Hällman wearing a suit, seated in his wheelchair'
+            width='852'
+            height='1846'
+            fetchPriority='high'
           />
-          <div className='absolute inset-0 pointer-events-none bg-gradient-to-t from-black to-transparent rounded-xl'></div>
+          <div
+            aria-hidden='true'
+            className='absolute bottom-0 right-0 h-[46%] w-[42%] pointer-events-none bg-gradient-to-l from-black via-black/80 to-transparent'
+            style={{
+              maskImage: 'linear-gradient(to bottom, transparent, black 32%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 32%)',
+            }}
+          />
         </div>
         <SocialLinks className='flex items-center justify-center gap-4 mt-5' />
       </div>
