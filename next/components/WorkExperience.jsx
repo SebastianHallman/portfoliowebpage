@@ -8,9 +8,9 @@ export default function WorkExperience() {
       className='min-h-screen w-[90%] text-[#FAFDF6] flex flex-col mx-auto items-center snap-start gap-6 overflow-visible py-16 lg:py-8'
     >
       <div className='w-full'>
-        <h1 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>
+        <h2 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>
           Work Experience
-        </h1>
+        </h2>
       </div>
 
       <div className='w-full px-6 pb-6'>
