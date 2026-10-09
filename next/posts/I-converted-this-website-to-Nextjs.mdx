@@ -1,0 +1,28 @@
+---
+title: I converted this website to Next.js
+subtitle: From Vite to Next.js
+date: 2026-10-09
+image: /img/blog/vite-to-nextjs.png
+excerpt: I spent a Friday converting this portfolio from Vite to Next.js so that shared posts would show a proper preview. It was probably unnecessary, but I wanted to see how Next.js handles routing, client components, and SEO.
+category: Development
+---
+
+I spent this Friday converting this portfolio website from Vite to Next.js. This is probably unnecessary for my website, and the gains are not really that big, but I wanted to try it out and see how it works. I have seen that Next.js seems more popular in production environments, so knowing it would not hurt.
+
+## Why I converted to Next.js
+
+Honestly, the main reason was that I wanted to improve the SEO of my website. If I share a blog post on social media, I want it to show a proper preview of the post, and not just a link that says "Sebastian Hallman". There are other ways to achieve this that would be easier, but I wanted to try something new. Afterwards, I feel like I prefer Next.js over Vite, and if I want to expand my portfolio, it will probably be with Next.js.
+
+## What I realized
+
+At its core, Next.js is just React with some changes. For interactive parts, like my project modal, I just had to remember to add the `"use client"` directive to make the component interactive. For routes, I just had to use the App Router to create new pages. This is something I prefer over classic react-router-dom. I just create the file structure for the routes, and Next.js takes care of the rest. It is so sweet. This is easier than using react-router-dom and changing the routes manually.
+
+And the SEO is just easier. All you have to do is add the metadata object to the code, and Next.js handles the rest. It is so sweet.
+
+## How hard was it?
+
+Not so hard. I did get help from Codex to convert it. I could have asked Codex to just do it, but that would not have been a good learning experience. I used it as a helper and explained why I needed to do things the way I did. And it worked out pretty well. While I would not say that I fully know Next.js, I feel like I have a good base of knowledge that I can build on.
+
+## Expanding my technical toolbox
+
+I think that to thrive as a developer in this day and age of AI, the two biggest things to focus on are thinking about how the full system should work and which tools to use, and knowing when to use which tool. Exploring new frameworks and technologies is therefore vital for staying up to date and having the flexibility to use the right tool for the job. I will continue to explore new frameworks and technologies while I also try to specialize in a few areas. This is probably what every junior developer should do. But what do I know?
