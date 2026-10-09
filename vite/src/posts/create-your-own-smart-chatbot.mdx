@@ -1,0 +1,210 @@
+---
+title: I made my own smart chatbot on my website, and you can too!
+subtitle: A short guide on how to create your own chatbot and add it to your website
+date: 2026-05-09
+excerpt: I created a chatbot for my website that can answer questions about me and my projects, and it can even show project cards and a contact button when relevant. In this post, I will show you how I created this chatbot and how you can do the same.
+category: Tutorial
+---
+
+If you have visited my website, you might have noticed a little chatbot icon at the bottom right corner of the screen. If you click on it, you will see a chatbot that can answer your questions about me, my projects, and more. I created this chatbot just to expirement with implementing LLM APIs into "real" applications and the chatbot doesn't really have a ton of value, but it is a fun project and is good to know in this day and age where AI is becoming more and more prevalent. In this post, I will show you how I created this chatbot and how you can do the same. I will not go into implementing the frontend, but I will show you how to create a chatbot that you can customize however you want. This tutorial will use JavaScript and the Fetch API, but all the concepts can be applied to any programming language.
+
+## Getting started
+
+First of all, you need an API key from an LLM provider. I am using OpenRouter since they have a free tier which is good for smaller projects, but this should work with any provider that has an API. Get your API key and keep it in an environment variable or a secure place for best practices. Then, let's setup a simple function to call the API and get a response. Here is an example of how to do this in JavaScript using the Fetch API:
+
+```javascript
+
+async function getChatbotResponse(message) {
+  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${YOUR_API_KEY_GOES_HERE}`
+    },
+    body: JSON.stringify({
+      model: 'openai/gpt-oss-120b:free', // You can choose any model you want, but make sure to check the documentation for the correct model name
+      messages: [
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: message }
+      ]
+    })
+  });
+  
+  const data = await response.json();
+  return data.choices[0].message.content;
+}
+```
+
+This function takes a message as input, sends it to the API, and returns the response. If we use the function to send a simple message, we will get a response from the chatbot. For example:
+
+```javascript
+getChatbotResponse('What is your name?').then(response => {
+  console.log(response); // This should print the chatbot's response to the console
+});
+```
+
+But right now, we have a problem. If we would try to run this in a loop, we would not get the full conversation history, and the chatbot would not be able to remember anything. To fix this, we need to keep track of the conversation history and send it with every message. We want to save the conversation history in an array and update it with every message. In React, we can use the useState hook to keep track of the conversation history. In vanilla JavaScript, we can just use a simple array and update it with every message. Then, instead of sending just the user message, we will send the entire conversation history to the API. This way, the chatbot will be able to keep a conversation with the user. The new function would look something like this:
+
+```javascript
+let conversationHistory = [
+  { role: 'system', content: 'You are a helpful assistant.' }
+];
+
+async function getChatbotResponse(message) {
+  // Add the user message to the conversation history
+  conversationHistory.push({ role: 'user', content: message });
+  
+  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${YOUR_API_KEY_GOES_HERE}`
+    },
+    body: JSON.stringify({
+      model: 'openai/gpt-oss-120b:free',
+      messages: conversationHistory
+    })
+  });
+  
+  const data = await response.json();
+  const chatbotResponse = data.choices[0].message.content;
+  
+  // Add the chatbot response to the conversation history
+  conversationHistory.push({ role: 'assistant', content: chatbotResponse });
+  
+  return chatbotResponse;
+}
+```
+
+There we go! A simple chatbot that can keep a conversation with the user. But right now, this is just a regular normal chatbot, like using ChatGPT. Let's customize it a bit to make it more personal and more useful.
+
+## Making a system prompt
+
+A system prompt is the first message we set in our conversation. It defines the behavior and personality of the chatbot. For example, we can set a system prompt to make the chatbot more helpful, more humorous, or more professional. In the case of my chatbot, I wanted it to know about me and my projects, so I set the system prompt to include some information about me. For the projects and work experience, I have the data in a seperate JavaScript file containing a JSON object, so I imported that data and added it to the system prompt. This way, the chatbot can answer questions about me and my projects. Here is an example of how to set a system prompt with some information about me:
+
+```javascript
+import { projects } from './projectsData.js';
+import { experience } from './experienceData.js';
+
+const projectContext = projects
+  .map(p => `Title: ${p.title}\nTech: ${p.tech.join(', ')}\nDescription: ${p.descriptionLong}`)
+  .join('\n\n---\n\n');
+
+const workContext = experience
+  .map(w => `Company: ${w.company}\nRole: ${w.role}\nDates: ${w.dates}\nDescription: ${w.description}`)
+  .join('\n\n---\n\n');
+
+const SYSTEM_PROMPT = `You are a helpful assistant that knows about me and my projects.
+
+== PROJECTS (use ONLY this data — do not invent details) ==
+${projectContext}
+
+== WORK EXPERIENCE ==
+${workContext}`;
+
+let conversationHistory = [
+  { role: 'system', content: SYSTEM_PROMPT }
+];
+
+// The rest of the code remains the same
+
+```
+
+This is a simplification to keep it short, and my system prompt is much more detailed, but you get the idea. This way, we have now a more personalized chatbot that can answer questions about me and my projects.
+
+There is still a problem though. Despite giving context about me and my projects, the chatbot will eventually hallucinate and make up information that are incorrect. I have tried different system prompts and explicitly told the chatbot to not make up information, but it still does it. This is quite frustrating and is misleading for the end user. Additionally, we also just get the answer in text form, which can be unintuitive for some questions. What if we could display the projects in a nice card format instead of just text? Or if the user asks to contact me, we show a contact button instead of just giving them my email in text form? 
+
+The neat thing is, we can!
+
+## Getting a JSON response from the API
+
+Until now, we have done the most basic implementation of a chatbot, where we just send a message and get a text response. But the API can do much more than that. We can ask the API to always respond with a structured JSON object instead of free-form text. This means we can include both the message and extra metadata in every response. We could use this, for example, to display certain projects or whether to show a contact button. To enable this, we add `response_format: { type: 'json_object' }` to our request, and we tell the model exactly what shape of JSON we expect in the system prompt:
+
+```javascript
+const SYSTEM_PROMPT = `You are a helpful assistant that knows about me and my projects.
+... {rest of the system prompt}...
+
+When you respond, always use the following JSON format:
+
+{
+  "message": "your plain text response here",
+  "projectIds": ["id1", "id2"], // an array of project IDs to display, or [] if none
+  "showContact": false // set to true if the contact button should be shown
+}
+== RESPONSE FORMAT (REQUIRED) ==
+You MUST always respond with a JSON object in this exact format:
+{"message": "your plain text response here", "projectIds": ["id1", "id2"], "showContact": false}
+
+- "message": your response as plain text (no markdown)
+- "projectIds": an array of project IDs that you specifically mention or discuss. Use [] if none.
+- "showContact": set to true when the visitor asks how to contact me or wants to reach out. Otherwise false.
+
+Always return valid JSON. Never return plain text.`
+```
+
+Now we update our fetch call to request a JSON response, and parse the content string we get back:
+
+```javascript
+async function getChatbotResponse(messages) {
+  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${YOUR_API_KEY_GOES_HERE}`
+    },
+    body: JSON.stringify({
+      model: 'openai/gpt-oss-120b:free',
+      response_format: { type: 'json_object' }, // Tell the API we want a JSON response
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        ...messages
+      ]
+    })
+  });
+
+  const data = await response.json();
+
+  // With json_object mode, the content is a JSON string — we need to parse it
+  const parsed = JSON.parse(data.choices[0].message.content);
+
+  return {
+    text: parsed.message,
+    projectIds: parsed.projectIds ?? [],
+    showContact: parsed.showContact ?? false,
+  };
+}
+```
+
+The key difference from before is that `data.choices[0].message.content` now contains a JSON string rather than plain text, so we call `JSON.parse()` on it. From there we can use the extra fields however we like in the frontend — render project cards for any IDs in `projectIds`, show a contact button when `showContact` is true, and display `text` as the chat message. Let's make a fictional frontend chat component that shows how we can use these extra fields:
+
+```javascript
+function ChatMessage({ message, projectIds, showContact }) {
+    return (
+        <div className="chat-message">
+            <p>{message}</p>
+            {projectIds.length > 0 && (
+                <div className="project-cards">
+                    {projectIds.map(id => (
+                        <ProjectCard key={id} project={getProjectById(id)} />
+                    ))}
+                </div>
+            )}
+            {showContact && (
+                <button onClick={() => window.location.href = 'mailto:your-email@example.com'}>
+                    Contact Me
+                </button>
+            )}
+        </div>
+    );
+}
+```
+
+What have we done here? We still display a chat message to the user, but we do some additional checks. If the `projectIds` array is not empty, we render a list of project cards for those specific projects. If `showContact` is true, we render a contact button that opens the user's email client. This way, the chatbot can provide a much richer and more interactive experience, going beyond just text responses to include dynamic content and actions based on the user's queries.
+
+And this is just the beginning of what you can do with a chatbot like this. Imagine if you want the user to ask the chatbot to contact you, you could set a `contactPersonByMail` field in the JSON response. If that becomes true, you could write a function that feeds the conversation history to the API, ask for a summary of the conversation, and then send a nicely formatted email to you with the summary of the conversation, so you know exactly what the user wanted to talk about. This is like a modern contact form powered by AI, and with the right prompt, it could identify bot messages vs user messages, and only send the email if it does not classify the message as a bot message. The possibilities are endless, and it is really fun to experiment with this stuff. You can create a chatbot that can do anything you want, and it can be a great way to engage with visitors on your website in a more interactive way.
+
+## Conclusion
+
+I am no expert in AI implementation, and yes, I used Claude to make my chatbot on my website, but I sat down, looked at the code, and tried to understand how it works and why it works, and I grasp the core concepts behind how to make a customized chatbot that can do more than just answer questions. And while you won't build the next OpenClaw with this, you can build chatbots that does more than just responding with text, and that is quite nice, isn't it? 
+
+So go ahead, get your API key, and start building your own chatbot!

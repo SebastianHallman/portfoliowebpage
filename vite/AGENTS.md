@@ -4,6 +4,8 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## Commands
 
+The web project lives in `vite/`. Run the following commands from that directory.
+
 ```bash
 npm run dev       # Start dev server (Vite HMR)
 npm run build     # Production build → dist/

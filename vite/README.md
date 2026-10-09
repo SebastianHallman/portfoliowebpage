@@ -1,4 +1,17 @@
-# React + Vite
+# Portfolio
+
+Webbprojektet finns i `vite/`. Kör kommandona från den mappen:
+
+```bash
+cd vite
+npm ci
+npm run dev
+```
+
+`npm run build` bygger sidan till `vite/dist/` och `npm run lint` kontrollerar koden.
+Netlify använder `vite/` som basmapp och publicerar `dist/` därifrån.
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
