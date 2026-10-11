@@ -21,10 +21,34 @@ export type Project = {
   featured: boolean;
   date: string;
   content: string;
+  hasWriteup: boolean;
 };
+
+const EXTERNAL_LINK_KEYS = ["live", "play", "github"] as const;
 
 function isPublishedProjectFile(name: string) {
   return name.endsWith(".mdx") && !name.startsWith("_");
+}
+
+export function hasProjectWriteup(content: string) {
+  return content.trim().length > 0;
+}
+
+export function getExternalProjectHref(project: Pick<Project, "links">) {
+  for (const key of EXTERNAL_LINK_KEYS) {
+    const href = project.links[key];
+    if (href) return href;
+  }
+
+  return Object.values(project.links).find((href) => href);
+}
+
+export function getProjectCardHref(project: Project) {
+  if (project.hasWriteup) {
+    return `/projects/${project.slug}`;
+  }
+
+  return getExternalProjectHref(project);
 }
 
 export function getProjects(): Project[] {
@@ -61,6 +85,7 @@ export function getProjects(): Project[] {
             ? data.date.toISOString().slice(0, 10)
             : String(data.date ?? ""),
         content,
+        hasWriteup: hasProjectWriteup(content),
       };
     })
     .sort((a, b) => b.date.localeCompare(a.date));

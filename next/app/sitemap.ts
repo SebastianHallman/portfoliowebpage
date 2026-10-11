@@ -17,9 +17,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/blog/${post.slug}`,
       lastModified: post.date,
     })),
-    ...projects.map((project) => ({
-      url: `${siteUrl}/projects/${project.slug}`,
-      lastModified: project.date,
-    })),
+    ...projects
+      .filter((project) => project.hasWriteup)
+      .map((project) => ({
+        url: `${siteUrl}/projects/${project.slug}`,
+        lastModified: project.date,
+      })),
   ];
 }

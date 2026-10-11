@@ -24,7 +24,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProject(slug);
 
-  if (!project) notFound();
+  if (!project?.hasWriteup) notFound();
 
   const title = `${project.title} — Sebastian Hällman`;
   const description = project.summary;
@@ -53,7 +53,9 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  const slugs = getProjects().map((project) => ({ slug: project.slug }));
+  const slugs = getProjects()
+    .filter((project) => project.hasWriteup)
+    .map((project) => ({ slug: project.slug }));
   // Cache Components requires at least one param so the route can prerender.
   // The placeholder 404s via getProject() and is never listed or sitemapped.
   return slugs.length > 0 ? slugs : [{ slug: "__placeholder__" }];
@@ -65,7 +67,7 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = getProject(slug);
 
-  if (!project) notFound();
+  if (!project?.hasWriteup) notFound();
 
   const { default: Content } = await evaluate(project.content, {
     ...runtime,

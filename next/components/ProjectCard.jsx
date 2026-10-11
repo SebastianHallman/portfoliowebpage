@@ -56,6 +56,14 @@ export default function ProjectCard({ project, onSelect, compact = false, href }
   )
 
   if (href) {
+    if (/^https?:\/\//.test(href)) {
+      return (
+        <a href={href} target="_blank" rel="noreferrer" className={className}>
+          {content}
+        </a>
+      )
+    }
+
     return (
       <Link href={href} className={className}>
         {content}

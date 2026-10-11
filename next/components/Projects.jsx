@@ -5,14 +5,16 @@ import ProjectModal from './ProjectModal'
 import { projectsData } from '../data/projectsData'
 import { ChevronDown } from 'lucide-react'
 
-const featuredProjects = projectsData.filter((project) => project.featured)
 const archiveProjects = projectsData.filter((project) => !project.featured)
 
 /**
- * @param {{ projectPageSlugs?: string[] }} props
+ * @param {{ projectLinks?: Record<string, string>, extraFeatured?: object[] }} props
  */
-export default function Projects({ projectPageSlugs = [] }) {
-  const pageSlugs = new Set(projectPageSlugs)
+export default function Projects({ projectLinks = {}, extraFeatured = [] }) {
+  const featuredProjects = [
+    ...projectsData.filter((project) => project.featured),
+    ...extraFeatured,
+  ]
   const [selectedProject, setSelectedProject] = useState(null)
   const [archiveOpen, setArchiveOpen] = useState(false)
 
@@ -39,7 +41,7 @@ export default function Projects({ projectPageSlugs = [] }) {
             key={project.id}
             project={project}
             onSelect={handleSelect}
-            href={pageSlugs.has(project.id) ? `/projects/${project.id}` : undefined}
+            href={projectLinks[project.id]}
           />
         ))}
       </div>
@@ -70,7 +72,7 @@ export default function Projects({ projectPageSlugs = [] }) {
                 project={project}
                 onSelect={handleSelect}
                 compact
-                href={pageSlugs.has(project.id) ? `/projects/${project.id}` : undefined}
+                href={projectLinks[project.id]}
               />
             ))}
           </div>
