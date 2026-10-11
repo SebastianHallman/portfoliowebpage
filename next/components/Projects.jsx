@@ -8,6 +8,9 @@ import { ChevronDown } from 'lucide-react'
 const featuredProjects = projectsData.filter((project) => project.featured)
 const archiveProjects = projectsData.filter((project) => !project.featured)
 
+/**
+ * @param {{ projectPageSlugs?: string[] }} props
+ */
 export default function Projects({ projectPageSlugs = [] }) {
   const pageSlugs = new Set(projectPageSlugs)
   const [selectedProject, setSelectedProject] = useState(null)
