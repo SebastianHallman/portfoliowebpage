@@ -4,8 +4,11 @@ import WorkExperience from "@/components/WorkExperience";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import SideBar from "@/components/SideBar";
+import { getProjects } from "@/lib/projects";
 
 export default function Home() {
+  const projectPageSlugs = getProjects().map((project) => project.slug);
+
   return (
     <main className="bg-black min-h-screen">
       <SideBar />
@@ -13,7 +16,7 @@ export default function Home() {
         <Hero />
         <About />
         <WorkExperience />
-        <Projects />
+        <Projects projectPageSlugs={projectPageSlugs} />
         <Contact />
         </div>
     </main>

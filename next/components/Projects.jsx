@@ -8,7 +8,8 @@ import { ChevronDown } from 'lucide-react'
 const featuredProjects = projectsData.filter((project) => project.featured)
 const archiveProjects = projectsData.filter((project) => !project.featured)
 
-export default function Projects() {
+export default function Projects({ projectPageSlugs = [] }) {
+  const pageSlugs = new Set(projectPageSlugs)
   const [selectedProject, setSelectedProject] = useState(null)
   const [archiveOpen, setArchiveOpen] = useState(false)
 
@@ -31,7 +32,12 @@ export default function Projects() {
       </p>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6 p-6 w-full'>
         {featuredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} onSelect={handleSelect} />
+          <ProjectCard
+            key={project.id}
+            project={project}
+            onSelect={handleSelect}
+            href={pageSlugs.has(project.id) ? `/projects/${project.id}` : undefined}
+          />
         ))}
       </div>
 
@@ -61,6 +67,7 @@ export default function Projects() {
                 project={project}
                 onSelect={handleSelect}
                 compact
+                href={pageSlugs.has(project.id) ? `/projects/${project.id}` : undefined}
               />
             ))}
           </div>
