@@ -12,7 +12,10 @@ Copy `_template.mdx` to `<slug>.mdx`. The slug is the filename. Homepage cards i
 
 Whether the file has a detail page is derived from the MDX body. No extra flag.
 
-- **Frontmatter only** (nothing after the closing `---`): listed on `/projects` like any other card. `featured: true` can also show it on the homepage. There is no `/projects/<slug>` route, no sitemap entry, and the card links out (`live`, then `play`, then `github`). No badge or “coming soon” label — same card, different href.
-- **Body with content**: same listing card, but it links to `/projects/<slug>`. That slug is statically generated and added to the sitemap.
+`/projects` always shows the homepage cards from `data/projectsData.js` (same visuals and modal). An MDX file is optional.
+
+- **No MDX file**: the `projectsData` card still appears. Clicking it opens the same modal as the homepage.
+- **Frontmatter only** (nothing after the closing `---`): same card chrome, no “coming soon” badge. `featured: true` can also show a new slug on the homepage if it is not already in `projectsData`. There is no `/projects/<slug>` route, no sitemap entry, and the card links out (`live`, then `play`, then `github`).
+- **Body with content**: same card, but it links to `/projects/<slug>`. That slug is statically generated and added to the sitemap.
 
 Comments and headings count as a body. For a listing-only project, delete everything below the frontmatter.

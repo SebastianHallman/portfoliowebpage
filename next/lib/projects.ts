@@ -51,6 +51,26 @@ export function getProjectCardHref(project: Project) {
   return getExternalProjectHref(project);
 }
 
+export function getProjectLinkMap(projects: Project[]) {
+  return Object.fromEntries(
+    projects.flatMap((project) => {
+      const href = getProjectCardHref(project);
+      return href ? [[project.slug, href]] : [];
+    })
+  );
+}
+
+export function toHomepageCard(project: Project) {
+  return {
+    id: project.slug,
+    title: project.title,
+    tech: project.stack,
+    descriptionShort: project.summary,
+    image: project.cover,
+    featured: project.featured,
+  };
+}
+
 export function getProjects(): Project[] {
   if (!existsSync(projectsDirectory)) {
     return [];
