@@ -1,19 +1,17 @@
 import React from 'react'
+import Link from 'next/link'
 
-export default function ProjectCard({ project, onSelect, compact = false }) {
+export default function ProjectCard({ project, onSelect, compact = false, href }) {
   const imagePosition = project.imagePosition || 'center'
   const imageScale = project.imageScale || 1
   const tech = compact ? project.tech.slice(0, 3) : project.tech
+  const className = [
+    'w-full bg-slate-900 drop-shadow-xl drop-shadow-black rounded-2xl text-left hover:-translate-y-1 hover:shadow-2xl transition transform focus:outline-none focus:ring-2 focus:ring-[#DDD92A]',
+    compact ? 'p-3 flex gap-3 items-stretch' : 'p-4',
+  ].join(' ')
 
-  return (
-    <button
-      type='button'
-      onClick={() => onSelect?.(project)}
-      className={[
-        'w-full bg-slate-900 drop-shadow-xl drop-shadow-black rounded-2xl text-left hover:-translate-y-1 hover:shadow-2xl transition transform focus:outline-none focus:ring-2 focus:ring-[#DDD92A]',
-        compact ? 'p-3 flex gap-3 items-stretch' : 'p-4',
-      ].join(' ')}
-    >
+  const content = (
+    <>
       {project.image && (
         <div
           className={
@@ -54,6 +52,32 @@ export default function ProjectCard({ project, onSelect, compact = false }) {
           <p className='text-sm text-[#FAFDF6]/70 line-clamp-2'>{project.descriptionShort}</p>
         )}
       </div>
+    </>
+  )
+
+  if (href) {
+    if (/^https?:\/\//.test(href)) {
+      return (
+        <a href={href} target="_blank" rel="noreferrer" className={className}>
+          {content}
+        </a>
+      )
+    }
+
+    return (
+      <Link href={href} className={className}>
+        {content}
+      </Link>
+    )
+  }
+
+  return (
+    <button
+      type='button'
+      onClick={() => onSelect?.(project)}
+      className={className}
+    >
+      {content}
     </button>
   )
 }
