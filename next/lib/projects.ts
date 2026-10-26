@@ -66,6 +66,12 @@ export function toHomepageCard(project: Project) {
     title: project.title,
     tech: project.stack,
     descriptionShort: project.summary,
+    descriptionLong: project.summary,
+    links: {
+      demo: project.links.live,
+      site: project.links.play,
+      repo: project.links.github,
+    },
     image: project.cover,
     featured: project.featured,
   };

@@ -36,7 +36,7 @@ export default function ProjectCatalog({
             key={project.id}
             project={project}
             onSelect={setSelectedProject}
-            href={projectLinks[project.id]}
+            href={projectLinks[project.id]?.startsWith('/projects/') ? undefined : projectLinks[project.id]}
           />
         ))}
       </div>
@@ -68,7 +68,7 @@ export default function ProjectCatalog({
                   project={project}
                   onSelect={setSelectedProject}
                   compact
-                  href={projectLinks[project.id]}
+                  href={projectLinks[project.id]?.startsWith('/projects/') ? undefined : projectLinks[project.id]}
                 />
               ))}
             </div>
@@ -76,7 +76,13 @@ export default function ProjectCatalog({
         </div>
       )}
 
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <ProjectModal
+        project={selectedProject}
+        writeupHref={selectedProject && projectLinks[selectedProject.id]?.startsWith('/projects/')
+          ? projectLinks[selectedProject.id]
+          : undefined}
+        onClose={() => setSelectedProject(null)}
+      />
     </>
   )
 }
