@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
+import Link from 'next/link'
 
-export default function ProjectModal({ project, onClose }) {
+export default function ProjectModal({ project, onClose, writeupHref }) {
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === 'Escape') onClose?.()
@@ -89,6 +90,11 @@ export default function ProjectModal({ project, onClose }) {
           )}
 
           <div className='flex flex-wrap gap-3 pt-2'>
+            {writeupHref && (
+              <Link href={writeupHref} className={linkClassName}>
+                Read more
+              </Link>
+            )}
             {project.links?.demo && (
               <a
                 href={project.links.demo}
