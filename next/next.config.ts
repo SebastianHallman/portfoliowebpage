@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
     agentFeedback: true,
+    agentUpgrade: "security",
   },
   pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
   cacheComponents: true,
