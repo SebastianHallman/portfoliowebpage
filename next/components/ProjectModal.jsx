@@ -90,7 +90,6 @@ export default function ProjectModal({
             event.preventDefault()
             return
           }
-          if (link.target !== '_blank') onNavigate?.()
         }}
       >
         <button
@@ -106,7 +105,7 @@ export default function ProjectModal({
         {project.image && (
           <div className='shrink-0 px-4 pt-4'>
             <SharedImage name={imageTransitionName}>
-              <div className={`aspect-video w-full overflow-hidden rounded-2xl ${mediaFrameClass(project.image, project.imageFit)}`}>
+              <div className={`aspect-video max-h-[40vh] w-full overflow-hidden rounded-2xl ${mediaFrameClass(project.image, project.imageFit)}`}>
                 <img
                   src={project.image}
                   alt={`${project.title} large preview`}
@@ -161,7 +160,7 @@ export default function ProjectModal({
 
           <div className='flex flex-wrap gap-3 pt-2'>
             {writeupHref && (
-              <Link href={writeupHref} className={linkClassName}>
+              <Link href={writeupHref} className={linkClassName} onNavigate={onNavigate}>
                 Read more
               </Link>
             )}
