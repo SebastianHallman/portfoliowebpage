@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
 import SharedImage from './SharedImage'
-import { accentButtonClass } from '@/lib/cardStyles'
+import { accentButtonClass, imageFitClass, mediaFrameClass } from '@/lib/cardStyles'
 
 export default function ProjectModal({ project, onClose, writeupHref, imageTransitionName }) {
   useEffect(() => {
@@ -39,11 +39,11 @@ export default function ProjectModal({ project, onClose, writeupHref, imageTrans
         {project.image && (
           <div className='px-4 pt-4 shrink-0'>
             <SharedImage name={imageTransitionName}>
-              <div className='w-full aspect-video overflow-hidden rounded-2xl bg-slate-900'>
+              <div className={`aspect-video w-full overflow-hidden rounded-2xl ${mediaFrameClass(project.image, project.imageFit)}`}>
                 <img
                   src={project.image}
                   alt={`${project.title} large preview`}
-                  className='h-full w-full object-contain'
+                  className={`h-full w-full ${imageFitClass(project.imageFit)}`}
                 />
               </div>
             </SharedImage>

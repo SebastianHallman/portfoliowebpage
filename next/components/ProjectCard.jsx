@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import TagRow from './TagRow'
 import SharedImage from './SharedImage'
-import { surfaceCardClass, tagChipClass } from '@/lib/cardStyles'
+import { imageFitClass, mediaFrameClass, surfaceCardClass, tagChipClass } from '@/lib/cardStyles'
 
 export default function ProjectCard({ project, onSelect, compact = false, href, imageTransitionName }) {
   const tech = project.tech || []
@@ -18,14 +18,14 @@ export default function ProjectCard({ project, onSelect, compact = false, href, 
           <div
             className={
               compact
-                ? 'w-28 shrink-0 aspect-video overflow-hidden rounded-lg bg-slate-900'
-                : 'aspect-video w-full overflow-hidden bg-slate-900'
+                ? `aspect-video w-28 shrink-0 overflow-hidden rounded-lg ${mediaFrameClass(project.image, project.imageFit)}`
+                : `aspect-video w-full overflow-hidden ${mediaFrameClass(project.image, project.imageFit)}`
             }
           >
             <img
               src={project.image}
               alt=""
-              className='h-full w-full object-contain'
+              className={`h-full w-full ${imageFitClass(project.imageFit)}`}
             />
           </div>
         </SharedImage>

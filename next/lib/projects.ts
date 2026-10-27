@@ -18,6 +18,7 @@ export type Project = {
   stack: string[];
   links: ProjectLinks;
   cover?: string;
+  imageFit: "cover" | "contain";
   featured: boolean;
   date: string;
   content: string;
@@ -73,6 +74,7 @@ export function toHomepageCard(project: Project) {
       repo: project.links.github,
     },
     image: project.cover,
+    imageFit: project.imageFit,
     featured: project.featured,
   };
 }
@@ -90,6 +92,7 @@ export function getProjects(): Project[] {
         "utf8"
       );
       const { data, content } = matter(source);
+      const imageFit: "cover" | "contain" = data.imageFit === "contain" ? "contain" : "cover";
 
       return {
         slug: file.name.replace(/\.mdx$/, ""),
@@ -105,6 +108,7 @@ export function getProjects(): Project[] {
               )
             : {},
         cover: data.cover ? String(data.cover) : undefined,
+        imageFit,
         featured: Boolean(data.featured),
         date:
           data.date instanceof Date

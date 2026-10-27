@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getPosts, getPost } from "@/lib/posts";
 import SharedImage from "@/components/SharedImage";
-import { backLinkClass, mediaFrameClass, pageShellClass, pageTitleClass, readingClass, tagChipClass } from "@/lib/cardStyles";
+import { backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, readingClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
 
@@ -70,11 +70,11 @@ export default async function BlogPost({ params }) {
   
       {post.image && (
         <SharedImage name={`blog-${post.slug}`}>
-          <div className={`mb-8 aspect-video overflow-hidden rounded-2xl shadow-lg shadow-black/40 ${mediaFrameClass(post.image)}`}>
+          <div className={`mb-8 aspect-video overflow-hidden rounded-2xl shadow-lg shadow-black/40 ${mediaFrameClass(post.image, post.imageFit)}`}>
             <img
               src={post.image}
               alt={post.title}
-              className="h-full w-full object-contain"
+              className={`h-full w-full ${imageFitClass(post.imageFit)}`}
               loading="eager"
             />
           </div>

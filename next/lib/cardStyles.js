@@ -8,9 +8,24 @@ export const pageShellClass = "mx-auto w-full max-w-6xl px-6";
 /** Prose only. Headers, lists, and images stay in the page shell. */
 export const readingClass = "max-w-2xl";
 
-/** Fixed-ratio image well. Light logos sit on white so letterboxing matches the artwork. */
-export function mediaFrameClass(src) {
-  if (typeof src === "string" && src.includes("vite-to-nextjs")) return "bg-[#fff]";
+/** Photos fill the frame. Logos and screenshots opt into contain. */
+export function resolveImageFit(value) {
+  return value === "contain" ? "contain" : "cover";
+}
+
+export function imageFitClass(value) {
+  return resolveImageFit(value) === "contain" ? "object-contain" : "object-cover";
+}
+
+/** Letterbox color. The Vite wordmark is on white; other contained art sits on the card well. */
+export function mediaFrameClass(src, value) {
+  if (
+    resolveImageFit(value) === "contain" &&
+    typeof src === "string" &&
+    src.includes("vite-to-nextjs")
+  ) {
+    return "bg-[#fff]";
+  }
   return "bg-slate-900";
 }
 

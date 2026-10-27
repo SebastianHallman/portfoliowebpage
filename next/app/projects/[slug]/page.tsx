@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getProject, getProjects } from "@/lib/projects";
 import SharedImage from "@/components/SharedImage";
-import { accentButtonClass, backLinkClass, pageShellClass, pageTitleClass, readingClass, tagChipClass } from "@/lib/cardStyles";
+import { accentButtonClass, backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, readingClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
 
@@ -91,11 +91,11 @@ export default async function ProjectPage({
 
       {project.cover && (
         <SharedImage name={`project-${project.slug}`}>
-          <div className="mb-8 aspect-video overflow-hidden rounded-2xl bg-slate-900 shadow-lg shadow-black/40">
+          <div className={`mb-8 aspect-video overflow-hidden rounded-2xl shadow-lg shadow-black/40 ${mediaFrameClass(project.cover, project.imageFit)}`}>
             <img
               src={project.cover}
               alt={project.title}
-              className="h-full w-full object-contain"
+              className={`h-full w-full ${imageFitClass(project.imageFit)}`}
               loading="eager"
             />
           </div>

@@ -16,6 +16,7 @@ export function getPosts() {
 
       return {
         ...data,
+        imageFit: data.imageFit === "contain" ? "contain" : "cover",
         slug: file.name.replace(/\.mdx$/, ""),
         date:
           data.date instanceof Date
