@@ -5,9 +5,6 @@ export const focusRing =
 /** One shell for the nav and every page, so the left edge lines up. */
 export const pageShellClass = "mx-auto w-full max-w-6xl px-6";
 
-/** Prose only. Headers, lists, and images stay in the page shell. */
-export const readingClass = "max-w-2xl";
-
 /** Photos fill the frame. Logos and screenshots opt into contain. */
 export function resolveImageFit(value) {
   return value === "contain" ? "contain" : "cover";

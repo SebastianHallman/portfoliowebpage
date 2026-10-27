@@ -43,17 +43,36 @@ export default function SiteNav() {
     if (!onHome) return undefined
     const sections = SECTIONS.map((item) => document.getElementById(item.id)).filter(Boolean)
     if (sections.length === 0) return undefined
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-        if (visible) setVisibleSection(visible.target.id)
-      },
-      { rootMargin: '-8% 0% -55% 0%', threshold: [0.15, 0.4] },
-    )
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
+
+    let frame = 0
+    const update = () => {
+      const hero = document.getElementById('start')
+      const heroBottom = hero?.getBoundingClientRect().bottom ?? 0
+      const atTop = window.scrollY < 24 || heroBottom > window.innerHeight * 0.55
+      if (atTop) {
+        setVisibleSection((current) => (current === null ? current : null))
+        return
+      }
+      const marker = window.innerHeight * 0.28
+      const active = sections.find((section) => {
+        const rect = section.getBoundingClientRect()
+        return rect.top <= marker && rect.bottom > marker
+      })
+      const next = active?.id ?? null
+      setVisibleSection((current) => (current === next ? current : next))
+    }
+
+    const onScroll = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(update)
+    }
+
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [onHome])
 
   const currentId = onBlog ? 'blog' : onProjects ? 'projects' : onHome ? visibleSection : null
@@ -74,8 +93,18 @@ export default function SiteNav() {
       focusRing,
       currentId === id
         ? 'text-[#FAFDF6] shadow-[inset_0_-2px_0_0_var(--color-accent)]'
-        : 'text-[#FAFDF6]/80 hover:text-accent',
+        : 'text-[#FAFDF6]/80 hover:text-accent hover:shadow-[inset_0_-2px_0_0_var(--color-accent)]',
     ].join(' ')
+
+  const onHomeMark = (event) => {
+    setOpen(false)
+    if (!onHome) return
+    event.preventDefault()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (window.location.hash) {
+      window.history.pushState(null, '', '/')
+    }
+  }
 
   const renderLink = (item, index) => (
     <Link
@@ -92,8 +121,30 @@ export default function SiteNav() {
 
   return (
     <header className="site-header sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
-      <nav aria-label="Primary" className={`${pageShellClass} flex h-14 items-center justify-between gap-2`}>
-        <ul className="-mx-3 hidden items-center gap-1 md:flex">
+      <nav aria-label="Primary" className={`${pageShellClass} flex h-14 items-center gap-2`}>
+        <Link
+          href="/"
+          aria-label="Home"
+          aria-current={onHome && !visibleSection ? 'page' : undefined}
+          onClick={onHomeMark}
+          className={`inline-flex size-9 shrink-0 items-center justify-center rounded-md ${focusRing}`}
+        >
+          <svg viewBox="0 0 32 32" className="size-8" aria-hidden="true">
+            <rect x="0.75" y="0.75" width="30.5" height="30.5" rx="6" fill="#000" stroke="#DDD92A" strokeWidth="1.5" />
+            <text
+              x="16"
+              y="21.5"
+              textAnchor="middle"
+              fontFamily="Georgia, 'Times New Roman', serif"
+              fontSize="14"
+              fontWeight="700"
+              fill="#DDD92A"
+            >
+              SH
+            </text>
+          </svg>
+        </Link>
+        <ul className="hidden items-center gap-1 md:flex">
           {items.map((item) => (
             <li key={item.id}>{renderLink(item)}</li>
           ))}

@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getProject, getProjects } from "@/lib/projects";
 import SharedImage from "@/components/SharedImage";
-import { accentButtonClass, backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, readingClass, tagChipClass } from "@/lib/cardStyles";
+import { accentButtonClass, backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
 
@@ -111,7 +111,7 @@ export default async function ProjectPage({
       </div>
 
       <h1 className={`${pageTitleClass} mb-2`}>{project.title}</h1>
-      <p className={`${readingClass} text-lg text-[#FAFDF6]/65 mb-6`}>{project.summary}</p>
+      <p className="mb-6 text-lg text-[#FAFDF6]/65">{project.summary}</p>
 
       {project.stack.length > 0 && (
         <ul className="flex flex-wrap gap-1.5 mb-6">
@@ -139,9 +139,9 @@ export default async function ProjectPage({
         </div>
       )}
 
-      <hr className={`${readingClass} border-slate-800 mb-10`} />
+      <hr className="mb-10 border-slate-800" />
 
-      <article className={readingClass}>
+      <article>
         <Content components={components} />
       </article>
     </main>

@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getPosts, getPost } from "@/lib/posts";
 import SharedImage from "@/components/SharedImage";
-import { backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, readingClass, tagChipClass } from "@/lib/cardStyles";
+import { backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
 
@@ -93,13 +93,13 @@ export default async function BlogPost({ params }) {
       <h1 className={`${pageTitleClass} mb-2`}>
         {post.title}
       </h1>
-      <p className={`${readingClass} text-lg text-[#FAFDF6]/65 mb-10`}>
+      <p className="mb-10 text-lg text-[#FAFDF6]/65">
         {post.subtitle}
       </p>
   
-      <hr className={`${readingClass} border-slate-800 mb-10`} />
+      <hr className="mb-10 border-slate-800" />
   
-      <article className={readingClass}>
+      <article>
         <Content components={components} />
       </article>
     </main>
