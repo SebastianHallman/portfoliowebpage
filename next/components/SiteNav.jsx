@@ -100,7 +100,7 @@ export default function SiteNav() {
     setOpen(false)
     if (!onHome) return
     event.preventDefault()
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'auto' })
     if (window.location.hash) {
       window.history.pushState(null, '', '/')
     }
