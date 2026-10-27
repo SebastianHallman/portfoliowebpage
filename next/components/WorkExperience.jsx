@@ -5,7 +5,7 @@ export default function WorkExperience() {
   return (
     <div
       id='work'
-      className='min-h-screen w-[90%] text-[#FAFDF6] flex flex-col mx-auto items-center snap-start gap-6 overflow-visible py-16 lg:py-8'
+      className='w-[90%] text-[#FAFDF6] flex flex-col mx-auto items-center snap-start gap-6 overflow-visible pt-16 pb-8 lg:py-8'
     >
       <div className='w-full'>
         <h2 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>

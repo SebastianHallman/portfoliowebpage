@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
+import SharedImage from './SharedImage'
 
-export default function ProjectModal({ project, onClose, writeupHref }) {
+export default function ProjectModal({ project, onClose, writeupHref, imageTransitionName }) {
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === 'Escape') onClose?.()
@@ -37,13 +38,15 @@ export default function ProjectModal({ project, onClose, writeupHref }) {
 
         {project.image && (
           <div className='px-4 pt-4 shrink-0'>
-            <div className='w-full h-56 sm:h-72 md:h-80 overflow-hidden rounded-2xl'>
-              <img
-                src={project.image}
-                alt={`${project.title} large preview`}
-                className='w-full h-full object-cover'
-              />
-            </div>
+            <SharedImage name={imageTransitionName}>
+              <div className='w-full aspect-video overflow-hidden rounded-2xl bg-slate-900'>
+                <img
+                  src={project.image}
+                  alt={`${project.title} large preview`}
+                  className='w-full h-full object-cover'
+                />
+              </div>
+            </SharedImage>
           </div>
         )}
 

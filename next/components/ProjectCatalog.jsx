@@ -28,6 +28,9 @@ export default function ProjectCatalog({
   const [selectedProject, setSelectedProject] = useState(null)
   const [archiveOpen, setArchiveOpen] = useState(false)
 
+  const imageTransitionName = (project) =>
+    projectLinks[project.id]?.startsWith('/projects/') ? `project-${project.id}` : undefined
+
   return (
     <>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6 w-full'>
@@ -37,6 +40,7 @@ export default function ProjectCatalog({
             project={project}
             onSelect={setSelectedProject}
             href={projectLinks[project.id]?.startsWith('/projects/') ? undefined : projectLinks[project.id]}
+            imageTransitionName={selectedProject?.id === project.id ? undefined : imageTransitionName(project)}
           />
         ))}
       </div>
@@ -46,7 +50,7 @@ export default function ProjectCatalog({
           <button
             type='button'
             onClick={() => setArchiveOpen((open) => !open)}
-            className='flex items-center gap-2 text-[#EAE151] hover:text-[#DDD92A] transition focus:outline-none focus:ring-2 focus:ring-[#DDD92A] rounded-md px-1 py-1'
+            className='flex items-center gap-2 text-[#FAFDF6]/70 hover:text-[#FAFDF6] transition rounded-md px-1 py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DDD92A]'
             aria-expanded={archiveOpen}
           >
             <ChevronDown
@@ -69,6 +73,7 @@ export default function ProjectCatalog({
                   onSelect={setSelectedProject}
                   compact
                   href={projectLinks[project.id]?.startsWith('/projects/') ? undefined : projectLinks[project.id]}
+                  imageTransitionName={selectedProject?.id === project.id ? undefined : imageTransitionName(project)}
                 />
               ))}
             </div>
@@ -81,6 +86,7 @@ export default function ProjectCatalog({
         writeupHref={selectedProject && projectLinks[selectedProject.id]?.startsWith('/projects/')
           ? projectLinks[selectedProject.id]
           : undefined}
+        imageTransitionName={selectedProject ? imageTransitionName(selectedProject) : undefined}
         onClose={() => setSelectedProject(null)}
       />
     </>

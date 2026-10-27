@@ -5,6 +5,9 @@ import * as runtime from "react/jsx-runtime";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getProject, getProjects } from "@/lib/projects";
+import SharedImage from "@/components/SharedImage";
+import SiteNav from "@/components/SiteNav";
+import { backLinkClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
 
@@ -78,21 +81,27 @@ export default async function ProjectPage({
   const links = Object.entries(project.links).filter(([, href]) => href);
 
   return (
-    <main className="max-w-2xl mx-auto px-6 py-16 text-[#FAFDF6]">
+    <div className="min-h-screen bg-black text-[#FAFDF6]">
+    <SiteNav current="projects" />
+    <main className="max-w-2xl mx-auto px-6 pt-10 pb-16">
       <Link
         href="/projects"
-        className="text-sm text-[#EAE151] opacity-60 hover:opacity-100 transition mb-10 inline-block"
+        className={backLinkClass}
       >
         ← All projects
       </Link>
 
       {project.cover && (
-        <img
-          src={project.cover}
-          alt={project.title}
-          className="w-full rounded-2xl shadow-lg shadow-black/40 mb-8"
-          loading="eager"
-        />
+        <SharedImage name={`project-${project.slug}`}>
+          <div className="mb-8 aspect-video overflow-hidden rounded-2xl bg-slate-900 shadow-lg shadow-black/40">
+            <img
+              src={project.cover}
+              alt={project.title}
+              className="h-full w-full object-cover"
+              loading="eager"
+            />
+          </div>
+        </SharedImage>
       )}
 
       <div className="flex items-center gap-3 mb-4">
@@ -104,19 +113,16 @@ export default async function ProjectPage({
       </div>
 
       <h1 className="text-4xl text-[#EAE151] font-bold mb-2">{project.title}</h1>
-      <p className="text-lg text-[#EAE151] opacity-70 mb-6">{project.summary}</p>
+      <p className="text-lg text-[#FAFDF6]/65 mb-6">{project.summary}</p>
 
       {project.stack.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-6">
+        <ul className="flex flex-wrap gap-1.5 mb-6">
           {project.stack.map((item) => (
-            <span
-              key={item}
-              className="text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold"
-            >
+            <li key={item} className={`${tagChipClass} max-w-none`}>
               {item}
-            </span>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
 
       {links.length > 0 && (
@@ -125,7 +131,7 @@ export default async function ProjectPage({
             <a
               key={key}
               href={href}
-              className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold ring-1 ring-[#DDD92A] bg-[#DDD92A]/10 text-[#FAFDF6] hover:bg-[#DDD92A] hover:text-black transition"
+              className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold ring-1 ring-[#DDD92A] bg-[#DDD92A]/10 text-[#FAFDF6] hover:bg-[#DDD92A] hover:text-black transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DDD92A]"
               target="_blank"
               rel="noreferrer"
             >
@@ -141,5 +147,6 @@ export default async function ProjectPage({
         <Content components={components} />
       </article>
     </main>
+    </div>
   );
 }

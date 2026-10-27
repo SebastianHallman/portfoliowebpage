@@ -1,7 +1,9 @@
 import Link from "next/link";
 
 import ProjectCatalog from "@/components/ProjectCatalog";
+import SiteNav from "@/components/SiteNav";
 import { projectsData } from "@/data/projectsData";
+import { backLinkClass } from "@/lib/cardStyles";
 import { getProjectLinkMap, getProjects, toHomepageCard } from "@/lib/projects";
 
 export const metadata = {
@@ -24,10 +26,11 @@ const knownIds = new Set(projectsData.map((project) => project.id));
 export default function ProjectsList() {
   return (
     <div className="bg-black min-h-screen text-[#FAFDF6]">
-      <div className="w-[90%] max-w-6xl mx-auto py-16">
+      <SiteNav current="projects" />
+      <main className="w-[90%] max-w-6xl mx-auto pt-10 pb-16">
         <Link
           href="/"
-          className="text-sm text-[#EAE151] opacity-60 hover:opacity-100 transition mb-10 inline-block"
+          className={backLinkClass}
         >
           ← Back to portfolio
         </Link>
@@ -46,7 +49,7 @@ export default function ProjectsList() {
             .filter((project) => !project.featured && !knownIds.has(project.slug))
             .map(toHomepageCard)}
         />
-      </div>
+      </main>
     </div>
   );
 }
