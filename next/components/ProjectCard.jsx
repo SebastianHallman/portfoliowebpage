@@ -5,8 +5,6 @@ import SharedImage from './SharedImage'
 import { surfaceCardClass, tagChipClass } from '@/lib/cardStyles'
 
 export default function ProjectCard({ project, onSelect, compact = false, href, imageTransitionName }) {
-  const imagePosition = project.imagePosition || 'center'
-  const imageScale = project.imageScale || 1
   const tech = project.tech || []
   const className = [
     surfaceCardClass,
@@ -20,18 +18,14 @@ export default function ProjectCard({ project, onSelect, compact = false, href, 
           <div
             className={
               compact
-                ? 'w-28 shrink-0 aspect-[16/10] overflow-hidden rounded-lg bg-slate-900'
+                ? 'w-28 shrink-0 aspect-video overflow-hidden rounded-lg bg-slate-900'
                 : 'aspect-video w-full overflow-hidden bg-slate-900'
             }
           >
             <img
               src={project.image}
               alt=""
-              className='w-full h-full object-cover origin-center transition-transform duration-300'
-              style={{
-                objectPosition: imagePosition,
-                transform: `scale(${imageScale})`,
-              }}
+              className='h-full w-full object-contain'
             />
           </div>
         </SharedImage>

@@ -4,6 +4,7 @@ import ProjectCard from './ProjectCard'
 import ProjectModal from './ProjectModal'
 import { projectsData } from '../data/projectsData'
 import { ChevronDown } from 'lucide-react'
+import { focusRing } from '@/lib/cardStyles'
 
 /**
  * @param {{
@@ -50,7 +51,7 @@ export default function ProjectCatalog({
           <button
             type='button'
             onClick={() => setArchiveOpen((open) => !open)}
-            className='flex items-center gap-2 text-[#FAFDF6]/70 hover:text-[#FAFDF6] transition rounded-md px-1 py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DDD92A]'
+            className={`-mx-1 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-md px-1 py-1 text-left text-[#FAFDF6]/70 transition hover:text-[#FAFDF6] ${focusRing}`}
             aria-expanded={archiveOpen}
           >
             <ChevronDown

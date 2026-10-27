@@ -7,6 +7,7 @@
 @theme {
   --color-black: #030303;
   --color-white: #d9d9d9;
+  --color-accent: #ddd92a;
 }
 html {
   background: var(--color-black);

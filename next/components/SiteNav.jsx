@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useId, useRef, useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import { focusRing, pageShellClass } from '@/lib/cardStyles'
 
 const SECTIONS = [
   { id: 'about', label: 'About' },
@@ -11,9 +12,6 @@ const SECTIONS = [
   { id: 'projects', label: 'Projects' },
   { id: 'contact', label: 'Contact' },
 ]
-
-const focusRing =
-  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DDD92A] focus-visible:[outline-color:#DDD92A]'
 
 export default function SiteNav() {
   const pathname = usePathname() || '/'
@@ -75,8 +73,8 @@ export default function SiteNav() {
       'transition duration-300',
       focusRing,
       currentId === id
-        ? 'text-[#FAFDF6] shadow-[inset_0_-2px_0_0_#DDD92A]'
-        : 'text-[#FAFDF6]/80 hover:text-[#DDD92A]',
+        ? 'text-[#FAFDF6] shadow-[inset_0_-2px_0_0_var(--color-accent)]'
+        : 'text-[#FAFDF6]/80 hover:text-accent',
     ].join(' ')
 
   const renderLink = (item, index) => (
@@ -94,8 +92,8 @@ export default function SiteNav() {
 
   return (
     <header className="site-header sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
-      <nav aria-label="Primary" className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 px-3 sm:px-6">
-        <ul className="hidden items-center gap-1 md:flex">
+      <nav aria-label="Primary" className={`${pageShellClass} flex h-14 items-center justify-between gap-2`}>
+        <ul className="-mx-3 hidden items-center gap-1 md:flex">
           {items.map((item) => (
             <li key={item.id}>{renderLink(item)}</li>
           ))}
@@ -121,11 +119,13 @@ export default function SiteNav() {
       </nav>
       {menuOpen ? (
         <div id={panelId} className="border-t border-white/10 bg-black md:hidden">
-          <ul className="mx-auto flex max-w-6xl flex-col px-3 py-2 sm:px-6">
+          <div className={pageShellClass}>
+          <ul className="-mx-3 flex flex-col py-2">
             {items.map((item, index) => (
               <li key={item.id}>{renderLink(item, index)}</li>
             ))}
           </ul>
+          </div>
         </div>
       ) : null}
     </header>

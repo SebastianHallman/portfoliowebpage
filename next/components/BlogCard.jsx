@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import SharedImage from "@/components/SharedImage";
 import TagRow from "@/components/TagRow";
-import { surfaceCardClass } from "@/lib/cardStyles";
+import { mediaFrameClass, surfaceCardClass } from "@/lib/cardStyles";
 
 export default function BlogCard({ post }) {
   const hasImage = Boolean(post.image);
@@ -11,11 +11,11 @@ export default function BlogCard({ post }) {
     <Link href={`/blog/${post.slug}`} className={`${surfaceCardClass} block`}>
       {hasImage && (
         <SharedImage name={`blog-${post.slug}`}>
-          <div className="aspect-video w-full overflow-hidden bg-slate-900">
+          <div className={`aspect-video w-full overflow-hidden ${mediaFrameClass(post.image)}`}>
             <img
               src={post.image}
               alt=""
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
               loading="lazy"
             />
           </div>

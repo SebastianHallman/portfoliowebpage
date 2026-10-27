@@ -1,35 +1,33 @@
 import Link from 'next/link'
 import SocialLinks from './SocialLinks'
-import { socialLinks } from '../data/socialLinks'
-
-const linkedInHref = socialLinks.find((link) => link.id === 'linkedin')?.href
+import { focusRing, pageShellClass, primaryButtonClass } from '@/lib/cardStyles'
 
 export default function Hero() {
   return (
     <div
       id='start'
-      className='flex flex-col lg:flex-row items-center justify-center min-h-[calc(100dvh-3.5rem)] snap-start scroll-mt-14 w-full gap-4 lg:gap-6 px-4 py-16 lg:py-0'
+      className={`${pageShellClass} flex min-h-[calc(100dvh-3.5rem)] snap-start scroll-mt-14 flex-col items-center justify-center gap-8 py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:py-0`}
     >
-      <div className='text-[#FAFDF6] p-6 w-full max-w-xl'>
-        <h1 className='text-4xl font-bold lg:text-[64px] text-center lg:text-left'>
-          Hi! I&apos;m <span className='text-[#DDD92A]'>{'Sebastian H\u00E4llman'}</span>
+      <div className='w-full max-w-xl text-left text-[#FAFDF6]'>
+        <h1 className='text-left text-4xl font-bold lg:text-[64px]'>
+          Hi! I&apos;m <span className='text-accent'>{'Sebastian H\u00E4llman'}</span>
         </h1>
-        <h2 className='text-2xl font-bold lg:text-[32px] text-[#EAE151] text-center lg:text-left'>
+        <h2 className='text-left text-2xl font-bold text-accent lg:text-[32px]'>
           M.Sc. in Media Technology
         </h2>
-        <p className='mt-4 text-base lg:text-lg text-[#FAFDF6]/80 text-center lg:text-left leading-relaxed'>
+        <p className='mt-4 text-left text-base leading-relaxed text-[#FAFDF6]/80 lg:text-lg'>
           Recently graduated from KTH. Looking for frontend and fullstack roles with a strong UX and accessibility focus.
         </p>
-        <div className='flex flex-wrap gap-3 mt-5 mx-auto lg:mx-0 w-fit justify-center lg:justify-start'>
+        <div className='mt-5 flex flex-wrap justify-start gap-3'>
           <a
             href='#contact'
-            className='block bg-[#DDD92A] rounded-full px-5 py-2.5 w-fit text-black font-semibold hover:bg-[#EAE151] transition duration-300'
+            className={primaryButtonClass}
           >
             Contact me
           </a>
           <Link
             href='/blog'
-            className='block bg-transparent rounded-full ring ring-[#FAFDF6]/30 px-5 py-2.5 w-fit text-[#FAFDF6]/80 hover:ring-[#FAFDF6] hover:text-[#FAFDF6] transition duration-300'
+            className={`inline-flex items-center justify-center rounded-full px-5 py-2.5 font-semibold text-[#FAFDF6]/80 ring-1 ring-[#FAFDF6]/30 transition duration-300 hover:text-[#FAFDF6] hover:ring-[#FAFDF6] ${focusRing}`}
           >
             Read blog
           </Link>

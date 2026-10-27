@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getPosts, getPost } from "@/lib/posts";
 import SharedImage from "@/components/SharedImage";
-import { backLinkClass, tagChipClass } from "@/lib/cardStyles";
+import { backLinkClass, mediaFrameClass, pageShellClass, pageTitleClass, readingClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
 
@@ -60,7 +60,7 @@ export default async function BlogPost({ params }) {
 
   return (
     <div className="min-h-screen bg-black text-[#FAFDF6]">
-    <main className="max-w-2xl mx-auto px-6 pt-10 pb-16">
+    <main className={`${pageShellClass} pt-10 pb-16`}>
       <Link
         href="/blog"
         className={backLinkClass}
@@ -70,11 +70,11 @@ export default async function BlogPost({ params }) {
   
       {post.image && (
         <SharedImage name={`blog-${post.slug}`}>
-          <div className="mb-8 aspect-video overflow-hidden rounded-2xl bg-slate-900 shadow-lg shadow-black/40">
+          <div className={`mb-8 aspect-video overflow-hidden rounded-2xl shadow-lg shadow-black/40 ${mediaFrameClass(post.image)}`}>
             <img
               src={post.image}
               alt={post.title}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
               loading="eager"
             />
           </div>
@@ -90,16 +90,16 @@ export default async function BlogPost({ params }) {
         </time>
       </div>
   
-      <h1 className="text-4xl text-[#EAE151] font-bold mb-2">
+      <h1 className={`${pageTitleClass} mb-2`}>
         {post.title}
       </h1>
-      <p className="text-lg text-[#FAFDF6]/65 mb-10">
+      <p className={`${readingClass} text-lg text-[#FAFDF6]/65 mb-10`}>
         {post.subtitle}
       </p>
   
-      <hr className="border-slate-800 mb-10" />
+      <hr className={`${readingClass} border-slate-800 mb-10`} />
   
-      <article>
+      <article className={readingClass}>
         <Content components={components} />
       </article>
     </main>

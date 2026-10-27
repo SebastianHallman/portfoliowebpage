@@ -1,4 +1,5 @@
 import React from 'react'
+import { pageShellClass, pageTitleClass } from '@/lib/cardStyles'
 
 const skillGroups = [
   {
@@ -23,19 +24,19 @@ export default function About() {
   return (
     <div
       id="about"
-      className='min-h-[calc(100dvh-3.5rem)] w-[90%] max-w-4xl scroll-mt-14 text-[#FAFDF6] flex flex-col mx-auto items-center justify-center snap-start overflow-visible py-24 lg:py-32'
+      className={`${pageShellClass} min-h-[calc(100dvh-3.5rem)] scroll-mt-14 snap-start flex flex-col items-start justify-center overflow-visible py-24 text-[#FAFDF6] lg:py-32`}
     >
-      <h2 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A]'>About Me</h2>
-      <p className='mt-8 text-lg lg:text-xl font-medium max-w-2xl text-center leading-relaxed text-[#FAFDF6]/85'>
+      <h2 className={pageTitleClass}>About Me</h2>
+      <p className='mt-8 max-w-2xl text-left text-lg font-medium leading-relaxed text-[#FAFDF6]/85 lg:text-xl'>
         I&apos;m Sebastian, a recently graduated media technologist from KTH. I build accessible web products and like unfamiliar problems — collaborative editors, wearables, and 3D on the web — with a background in HCI.
       </p>
 
-      <h2 className='mt-20 lg:mt-24 text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A]'>Skills</h2>
-      <div className='mt-12 w-full flex flex-col gap-10 lg:gap-12'>
+      <h2 className={`${pageTitleClass} mt-20 lg:mt-24`}>Skills</h2>
+      <div className='mt-12 flex w-full flex-col gap-10 lg:gap-12'>
         {skillGroups.map((group) => (
-          <div key={group.name} className='flex flex-col items-center gap-4'>
-            <p className='text-sm uppercase tracking-[0.22em] text-[#EAE151]'>{group.name}</p>
-            <ul className='flex flex-wrap justify-center gap-3'>
+          <div key={group.name} className='flex flex-col items-start gap-4'>
+            <p className='text-sm uppercase tracking-[0.22em] text-accent'>{group.name}</p>
+            <ul className='flex flex-wrap justify-start gap-3'>
               {group.items.map((item) => (
                 <li
                   key={item}

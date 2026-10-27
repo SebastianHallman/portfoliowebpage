@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getProject, getProjects } from "@/lib/projects";
 import SharedImage from "@/components/SharedImage";
-import { backLinkClass, tagChipClass } from "@/lib/cardStyles";
+import { accentButtonClass, backLinkClass, pageShellClass, pageTitleClass, readingClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
 
@@ -81,7 +81,7 @@ export default async function ProjectPage({
 
   return (
     <div className="min-h-screen bg-black text-[#FAFDF6]">
-    <main className="max-w-2xl mx-auto px-6 pt-10 pb-16">
+    <main className={`${pageShellClass} pt-10 pb-16`}>
       <Link
         href="/projects"
         className={backLinkClass}
@@ -95,7 +95,7 @@ export default async function ProjectPage({
             <img
               src={project.cover}
               alt={project.title}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
               loading="eager"
             />
           </div>
@@ -110,8 +110,8 @@ export default async function ProjectPage({
         )}
       </div>
 
-      <h1 className="text-4xl text-[#EAE151] font-bold mb-2">{project.title}</h1>
-      <p className="text-lg text-[#FAFDF6]/65 mb-6">{project.summary}</p>
+      <h1 className={`${pageTitleClass} mb-2`}>{project.title}</h1>
+      <p className={`${readingClass} text-lg text-[#FAFDF6]/65 mb-6`}>{project.summary}</p>
 
       {project.stack.length > 0 && (
         <ul className="flex flex-wrap gap-1.5 mb-6">
@@ -129,7 +129,7 @@ export default async function ProjectPage({
             <a
               key={key}
               href={href}
-              className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold ring-1 ring-[#DDD92A] bg-[#DDD92A]/10 text-[#FAFDF6] hover:bg-[#DDD92A] hover:text-black transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#DDD92A]"
+              className={accentButtonClass}
               target="_blank"
               rel="noreferrer"
             >
@@ -139,9 +139,9 @@ export default async function ProjectPage({
         </div>
       )}
 
-      <hr className="border-slate-800 mb-10" />
+      <hr className={`${readingClass} border-slate-800 mb-10`} />
 
-      <article>
+      <article className={readingClass}>
         <Content components={components} />
       </article>
     </main>

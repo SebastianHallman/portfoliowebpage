@@ -1,8 +1,6 @@
-import Link from "next/link";
-
 import ProjectCatalog from "@/components/ProjectCatalog";
 import { projectsData } from "@/data/projectsData";
-import { backLinkClass } from "@/lib/cardStyles";
+import { pageShellClass, pageTitleClass } from "@/lib/cardStyles";
 import { getProjectLinkMap, getProjects, toHomepageCard } from "@/lib/projects";
 
 export const metadata = {
@@ -25,16 +23,9 @@ const knownIds = new Set(projectsData.map((project) => project.id));
 export default function ProjectsList() {
   return (
     <div className="bg-black min-h-screen text-[#FAFDF6]">
-      <main className="w-[90%] max-w-6xl mx-auto pt-10 pb-16">
-        <Link
-          href="/"
-          className={backLinkClass}
-        >
-          ← Back to portfolio
-        </Link>
-
-        <h1 className="text-5xl font-bold text-[#DDD92A] mb-4">Projects</h1>
-        <p className="text-lg text-slate-400 mb-12">
+      <main className={`${pageShellClass} pb-16 pt-10`}>
+        <h1 className={`${pageTitleClass} mb-4`}>Projects</h1>
+        <p className="mb-12 text-lg text-slate-400">
           Selected work. More coming soon.
         </p>
 

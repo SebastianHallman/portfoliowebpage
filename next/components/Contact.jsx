@@ -1,17 +1,15 @@
 import React from 'react'
 import SocialLinks from './SocialLinks'
-import { socialLinks } from '../data/socialLinks'
-
-const linkedInHref = socialLinks.find((link) => link.id === 'linkedin')?.href
+import { pageShellClass, pageTitleClass } from '@/lib/cardStyles'
 
 export default function Contact() {
   return (
-    <div id='contact' className='min-h-[calc(100dvh-3.5rem)] w-[90%] scroll-mt-14 text-[#FAFDF6] flex flex-col mx-auto items-center justify-center snap-start py-16 lg:py-8'>
-      <h2 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A]'>Let&apos;s connect</h2>
-      <p className='text-lg lg:text-xl font-medium lg:max-w-3xl p-6 text-center'>
+    <div id='contact' className={`${pageShellClass} flex min-h-[calc(100dvh-3.5rem)] scroll-mt-14 snap-start flex-col items-start justify-center py-16 text-[#FAFDF6]`}>
+      <h2 className={pageTitleClass}>Let&apos;s connect</h2>
+      <p className='mt-4 max-w-2xl text-left text-lg text-slate-400'>
         Open to frontend and fullstack roles. Reach me on LinkedIn, or browse the work on GitHub.
       </p>
-      <SocialLinks className='flex items-center justify-center gap-4 mt-2' />
+      <SocialLinks className='mt-6 flex items-center justify-start gap-4' />
     </div>
   )
 }

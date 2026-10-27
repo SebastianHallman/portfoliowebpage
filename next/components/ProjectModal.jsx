@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
 import SharedImage from './SharedImage'
+import { accentButtonClass } from '@/lib/cardStyles'
 
 export default function ProjectModal({ project, onClose, writeupHref, imageTransitionName }) {
   useEffect(() => {
@@ -13,8 +14,7 @@ export default function ProjectModal({ project, onClose, writeupHref, imageTrans
 
   if (!project) return null
 
-  const linkClassName =
-    'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold ring-1 ring-[#DDD92A] bg-[#DDD92A]/10 text-[#FAFDF6] hover:bg-[#DDD92A] hover:text-black transition focus:outline-none focus:ring-2 focus:ring-[#DDD92A] focus:ring-offset-2 focus:ring-offset-slate-950'
+  const linkClassName = accentButtonClass
 
   return (
     <div
@@ -43,7 +43,7 @@ export default function ProjectModal({ project, onClose, writeupHref, imageTrans
                 <img
                   src={project.image}
                   alt={`${project.title} large preview`}
-                  className='w-full h-full object-cover'
+                  className='h-full w-full object-contain'
                 />
               </div>
             </SharedImage>
@@ -57,19 +57,19 @@ export default function ProjectModal({ project, onClose, writeupHref, imageTrans
                 {project.title}
               </h3>
               {project.badge && (
-                <span className='text-xs font-semibold tracking-wide uppercase bg-[#DDD92A] text-black px-2 py-0.5 rounded-full'>
+                <span className='rounded-full bg-accent px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-black'>
                   {project.badge}
                 </span>
               )}
             </div>
-            <p className='text-lg text-[#EAE151] opacity-80'>{project.subtitle}</p>
+            <p className='text-lg text-accent/80'>{project.subtitle}</p>
           </div>
 
           <p className='text-md leading-relaxed'>{project.descriptionLong}</p>
 
           <div className='flex flex-wrap gap-2'>
             {project.tech.map((tech, idx) => (
-              <span key={idx} className='text-sm bg-[#DDD92A] text-black px-2 py-1 rounded-full w-fit'>
+              <span key={idx} className='w-fit rounded-full bg-accent px-2 py-1 text-sm text-black'>
                 {tech}
               </span>
             ))}
