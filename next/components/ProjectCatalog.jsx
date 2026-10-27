@@ -231,6 +231,34 @@ export default function ProjectCatalog({
         onDismiss={closeProject}
         onNavigate={() => {
           if (scrollLocked) flushSync(() => setScrollLocked(false))
+          const from = window.location.pathname
+          const started = performance.now()
+          let sawPageMove = false
+          const dropDialog = () => {
+            selectedRef.current = null
+            setSelectedProject(null)
+            setImageHost(null)
+            setActiveId(null)
+            setShellNamed(false)
+            setScrollLocked(false)
+            busy.current = false
+          }
+          const tick = () => {
+            const names = document.getAnimations().map((animation) => String(animation.animationName))
+            const pageMoving = names.some((name) => name === 'page-in' || name === 'page-out')
+            if (pageMoving) sawPageMove = true
+            const left = window.location.pathname !== from
+            if (sawPageMove && !pageMoving) {
+              dropDialog()
+              return
+            }
+            if (left && !pageMoving && !sawPageMove && performance.now() - started > 80) {
+              dropDialog()
+              return
+            }
+            if (performance.now() - started < 2000) requestAnimationFrame(tick)
+          }
+          requestAnimationFrame(tick)
         }}
       />
     </>

@@ -13,7 +13,7 @@ export default function Projects({
   return (
     <div
       id="projects"
-      className={`${pageShellClass} scroll-mt-14 snap-start relative flex flex-col items-start py-16 text-[#FAFDF6] lg:py-20`}
+      className={`${pageShellClass} relative flex flex-col items-start py-16 text-[#FAFDF6] lg:py-20`}
     >
       <h2 className={pageTitleClass}>
         Projects

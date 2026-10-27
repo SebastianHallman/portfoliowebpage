@@ -24,7 +24,7 @@ export default function About() {
   return (
     <div
       id="about"
-      className={`${pageShellClass} min-h-[calc(100dvh-3.5rem)] scroll-mt-14 snap-start flex flex-col items-start justify-center overflow-visible py-24 text-[#FAFDF6] lg:py-32`}
+      className={`${pageShellClass} min-h-[calc(100dvh-3.5rem)] flex flex-col items-start justify-center overflow-visible py-24 text-[#FAFDF6] lg:py-32`}
     >
       <h2 className={pageTitleClass}>About Me</h2>
       <p className='mt-8 max-w-2xl text-left text-lg font-medium leading-relaxed text-[#FAFDF6]/85 lg:text-xl'>

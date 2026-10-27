@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <div
       id='start'
-      className={`${pageShellClass} flex min-h-[calc(100dvh-3.5rem)] snap-start scroll-mt-14 flex-col items-center justify-center gap-8 py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:py-0`}
+      className={`${pageShellClass} flex min-h-[calc(100dvh-3.5rem)] flex-col items-center justify-center gap-8 py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-6 lg:py-0`}
     >
       <div className='w-full max-w-xl text-left text-[#FAFDF6]'>
         <h1 className='text-left text-4xl font-bold lg:text-[64px]'>

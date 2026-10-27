@@ -18,11 +18,6 @@ html {
     scroll-behavior: smooth;
   }
 }
-@media (min-width: 768px) {
-  html {
-    scroll-snap-type: y proximity;
-  }
-}
 body {
   background: var(--color-black);
   color: var(--color-white);

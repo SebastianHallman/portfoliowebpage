@@ -6,7 +6,7 @@ export default function WorkExperience() {
   return (
     <div
       id='work'
-      className={`${pageShellClass} scroll-mt-14 snap-start flex flex-col items-start gap-6 overflow-visible py-16 text-[#FAFDF6] lg:py-20`}
+      className={`${pageShellClass} flex flex-col items-start gap-6 overflow-visible py-16 text-[#FAFDF6] lg:py-20`}
     >
       <h2 className={pageTitleClass}>
         Work Experience

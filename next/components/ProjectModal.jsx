@@ -69,7 +69,7 @@ export default function ProjectModal({
 
   return createPortal(
     <div
-      className='fixed inset-0 z-[60] flex items-center justify-center overscroll-contain bg-black/70 p-4 backdrop-blur-sm'
+      className='fixed inset-0 z-[60] flex items-center justify-center overscroll-contain bg-black/70 p-4'
       style={shellStyle('modal-backdrop', shellNamed)}
       onClick={onDismiss}
     >

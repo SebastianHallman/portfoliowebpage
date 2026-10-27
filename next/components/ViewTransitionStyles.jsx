@@ -72,6 +72,11 @@ const css = `
     z-index: 40;
   }
 
+  html.modal-vt::view-transition-old(.media),
+  html.modal-vt::view-transition-new(.media) {
+    mix-blend-mode: normal !important;
+  }
+
   html.modal-vt-open::view-transition-group(.media) {
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
