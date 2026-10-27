@@ -45,6 +45,7 @@ export default function ProjectCatalog({
   const pendingClose = useRef(false)
   const returnFocus = useRef(null)
   const selectedRef = useRef(null)
+  const dialogVersion = useRef(0)
 
   useLayoutEffect(() => {
     if (!scrollLocked) return undefined
@@ -133,6 +134,7 @@ export default function ProjectCatalog({
 
   const openProject = (project) => {
     if (busy.current || selectedRef.current) return
+    dialogVersion.current += 1
     const opener = document.activeElement
     returnFocus.current = opener instanceof HTMLElement ? opener : null
     selectedRef.current = project
@@ -233,6 +235,7 @@ export default function ProjectCatalog({
           if (scrollLocked) flushSync(() => setScrollLocked(false))
           const from = window.location.pathname
           const started = performance.now()
+          const navigatingVersion = dialogVersion.current
           let sawPageMove = false
           const dropDialog = () => {
             selectedRef.current = null
@@ -244,6 +247,7 @@ export default function ProjectCatalog({
             busy.current = false
           }
           const tick = () => {
+            if (!selectedRef.current || dialogVersion.current !== navigatingVersion) return
             const names = document.getAnimations().map((animation) => String(animation.animationName))
             const pageMoving = names.some((name) => name === 'page-in' || name === 'page-out')
             if (pageMoving) sawPageMove = true
@@ -256,7 +260,11 @@ export default function ProjectCatalog({
               dropDialog()
               return
             }
-            if (performance.now() - started < 2000) requestAnimationFrame(tick)
+            if (performance.now() - started >= 2000) {
+              dropDialog()
+              return
+            }
+            requestAnimationFrame(tick)
           }
           requestAnimationFrame(tick)
         }}
