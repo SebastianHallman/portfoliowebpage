@@ -5,6 +5,8 @@ import * as runtime from "react/jsx-runtime";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getPosts, getPost } from "@/lib/posts";
+import SharedImage from "@/components/SharedImage";
+import { backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
 
@@ -57,46 +59,50 @@ export default async function BlogPost({ params }) {
   });
 
   return (
-    <main className="max-w-2xl mx-auto px-6 py-16 text-[#FAFDF6]">
+    <div className="min-h-screen bg-black text-[#FAFDF6]">
+    <main className={`${pageShellClass} pt-10 pb-16`}>
       <Link
         href="/blog"
-        className="text-sm text-[#EAE151] opacity-60 hover:opacity-100 transition mb-10 inline-block"
+        className={backLinkClass}
       >
         ← All posts
       </Link>
   
       {post.image && (
-        <img
-          src={post.image}
-          alt={post.title}
-          className="w-full rounded-2xl shadow-lg shadow-black/40 mb-8"
-          loading="eager"
-        />
+        <SharedImage name={`blog-${post.slug}`}>
+          <div className={`mb-8 aspect-video overflow-hidden rounded-2xl shadow-lg shadow-black/40 ${mediaFrameClass(post.image, post.imageFit)}`}>
+            <img
+              src={post.image}
+              alt={post.title}
+              className={`h-full w-full ${imageFitClass(post.imageFit)}`}
+              loading="eager"
+            />
+          </div>
+        </SharedImage>
       )}
   
       <div className="flex items-center gap-3 mb-4">
         {post.category && (
-          <span className="text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold">
-            {post.category}
-          </span>
+          <span className={tagChipClass}>{post.category}</span>
         )}
         <time dateTime={post.date} className="text-xs text-slate-500">
           {post.date}
         </time>
       </div>
   
-      <h1 className="text-4xl text-[#EAE151] font-bold mb-2">
+      <h1 className={`${pageTitleClass} mb-2`}>
         {post.title}
       </h1>
-      <p className="text-lg text-[#EAE151] opacity-70 mb-10">
+      <p className="mb-10 text-lg text-[#FAFDF6]/65">
         {post.subtitle}
       </p>
   
-      <hr className="border-slate-800 mb-10" />
+      <hr className="mb-10 border-slate-800" />
   
       <article>
         <Content components={components} />
       </article>
     </main>
+    </div>
   );
 }

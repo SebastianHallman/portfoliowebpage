@@ -1,4 +1,5 @@
 import React from 'react'
+import { pageShellClass, pageTitleClass } from '@/lib/cardStyles'
 
 const skillGroups = [
   {
@@ -23,30 +24,36 @@ export default function About() {
   return (
     <div
       id="about"
-      className='min-h-screen w-[90%] max-w-4xl text-[#FAFDF6] flex flex-col mx-auto items-center justify-center snap-start overflow-visible py-24 lg:py-32'
+      className={`${pageShellClass} min-h-[calc(100dvh-3.5rem)] flex flex-col items-start justify-center overflow-visible py-24 text-[#FAFDF6] lg:py-32`}
     >
-      <h2 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A]'>About Me</h2>
-      <p className='mt-8 text-lg lg:text-xl font-medium max-w-2xl text-center leading-relaxed text-[#FAFDF6]/85'>
-        I&apos;m Sebastian, a recently graduated media technologist from KTH. I build accessible web products and like unfamiliar problems — collaborative editors, wearables, and 3D on the web — with a background in HCI.
-      </p>
+      <div className="grid w-full items-start gap-16 lg:grid-cols-2 lg:gap-20">
+        <div>
+          <h2 className={pageTitleClass}>About Me</h2>
+          <p className="mt-8 text-left text-lg font-medium leading-relaxed text-[#FAFDF6]/85 lg:text-xl">
+            I&apos;m Sebastian, a recently graduated media technologist from KTH. I build accessible web products and like unfamiliar problems — collaborative editors, wearables, and 3D on the web — with a background in HCI.
+          </p>
+        </div>
 
-      <h2 className='mt-20 lg:mt-24 text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A]'>Skills</h2>
-      <div className='mt-12 w-full flex flex-col gap-10 lg:gap-12'>
-        {skillGroups.map((group) => (
-          <div key={group.name} className='flex flex-col items-center gap-4'>
-            <p className='text-sm uppercase tracking-[0.22em] text-[#EAE151]'>{group.name}</p>
-            <ul className='flex flex-wrap justify-center gap-3'>
-              {group.items.map((item) => (
-                <li
-                  key={item}
-                  className='text-sm text-[#FAFDF6] px-4 py-1.5 rounded-full ring-1 ring-[#FAFDF6]/15 bg-white/5'
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
+        <div>
+          <h2 className={pageTitleClass}>Skills</h2>
+          <div className="mt-8 flex w-full flex-col gap-8">
+            {skillGroups.map((group) => (
+              <div key={group.name} className="flex flex-col items-start gap-4">
+                <p className="text-sm uppercase tracking-[0.22em] text-accent">{group.name}</p>
+                <ul className="flex flex-wrap justify-start gap-3">
+                  {group.items.map((item) => (
+                    <li
+                      key={item}
+                      className="rounded-full bg-white/5 px-4 py-1.5 text-sm text-[#FAFDF6] ring-1 ring-[#FAFDF6]/15"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   )

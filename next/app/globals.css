@@ -7,9 +7,23 @@
 @theme {
   --color-black: #030303;
   --color-white: #d9d9d9;
+  --color-accent: #ddd92a;
+}
+html {
+  background: var(--color-black);
+  scroll-padding-top: 3.5rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 body {
   background: var(--color-black);
   color: var(--color-white);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-header {
+  view-transition-name: site-header;
 }

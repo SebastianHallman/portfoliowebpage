@@ -1,19 +1,18 @@
 import React from 'react'
 import { workExperienceData } from '../data/workExperienceData'
+import { pageShellClass, pageTitleClass } from '@/lib/cardStyles'
 
 export default function WorkExperience() {
   return (
     <div
       id='work'
-      className='min-h-screen w-[90%] text-[#FAFDF6] flex flex-col mx-auto items-center snap-start gap-6 overflow-visible py-16 lg:py-8'
+      className={`${pageShellClass} flex flex-col items-start gap-6 overflow-visible py-16 text-[#FAFDF6] lg:py-20`}
     >
-      <div className='w-full'>
-        <h2 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>
-          Work Experience
-        </h2>
-      </div>
+      <h2 className={pageTitleClass}>
+        Work Experience
+      </h2>
 
-      <div className='w-full px-6 pb-6'>
+      <div className='w-full'>
         <div className='flex flex-col gap-6'>
           {workExperienceData.map((job) => (
             <div
