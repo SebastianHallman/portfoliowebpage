@@ -23,7 +23,7 @@ export default function About() {
   return (
     <div
       id="about"
-      className='min-h-screen w-[90%] max-w-4xl text-[#FAFDF6] flex flex-col mx-auto items-center justify-center snap-start overflow-visible py-24 lg:py-32'
+      className='min-h-[calc(100dvh-3.5rem)] w-[90%] max-w-4xl scroll-mt-14 text-[#FAFDF6] flex flex-col mx-auto items-center justify-center snap-start overflow-visible py-24 lg:py-32'
     >
       <h2 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A]'>About Me</h2>
       <p className='mt-8 text-lg lg:text-xl font-medium max-w-2xl text-center leading-relaxed text-[#FAFDF6]/85'>

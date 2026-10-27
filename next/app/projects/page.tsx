@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import ProjectCatalog from "@/components/ProjectCatalog";
-import SiteNav from "@/components/SiteNav";
 import { projectsData } from "@/data/projectsData";
 import { backLinkClass } from "@/lib/cardStyles";
 import { getProjectLinkMap, getProjects, toHomepageCard } from "@/lib/projects";
@@ -26,7 +25,6 @@ const knownIds = new Set(projectsData.map((project) => project.id));
 export default function ProjectsList() {
   return (
     <div className="bg-black min-h-screen text-[#FAFDF6]">
-      <SiteNav current="projects" />
       <main className="w-[90%] max-w-6xl mx-auto pt-10 pb-16">
         <Link
           href="/"

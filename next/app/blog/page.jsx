@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import BlogCard from '@/components/BlogCard'
-import SiteNav from '@/components/SiteNav'
 import { backLinkClass } from '@/lib/cardStyles'
 import { getPosts } from '@/lib/posts'
 
@@ -26,7 +25,6 @@ const posts = getPosts()
 export default function BlogList() {
   return (
     <div className='min-h-screen bg-black text-[#FAFDF6]'>
-      <SiteNav current='blog' />
       <main className='mx-auto max-w-3xl px-6 pb-16 pt-10'>
         <Link href='/' className={backLinkClass}>
           ← Back to portfolio

@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <div
       id='start'
-      className='flex flex-col lg:flex-row items-center justify-center min-h-screen snap-start w-full gap-4 lg:gap-6 px-4 py-16 lg:py-0'
+      className='flex flex-col lg:flex-row items-center justify-center min-h-[calc(100dvh-3.5rem)] snap-start scroll-mt-14 w-full gap-4 lg:gap-6 px-4 py-16 lg:py-0'
     >
       <div className='text-[#FAFDF6] p-6 w-full max-w-xl'>
         <h1 className='text-4xl font-bold lg:text-[64px] text-center lg:text-left'>

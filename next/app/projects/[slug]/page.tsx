@@ -6,7 +6,6 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getProject, getProjects } from "@/lib/projects";
 import SharedImage from "@/components/SharedImage";
-import SiteNav from "@/components/SiteNav";
 import { backLinkClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
@@ -82,7 +81,6 @@ export default async function ProjectPage({
 
   return (
     <div className="min-h-screen bg-black text-[#FAFDF6]">
-    <SiteNav current="projects" />
     <main className="max-w-2xl mx-auto px-6 pt-10 pb-16">
       <Link
         href="/projects"

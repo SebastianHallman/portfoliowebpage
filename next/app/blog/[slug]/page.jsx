@@ -6,7 +6,6 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getPosts, getPost } from "@/lib/posts";
 import SharedImage from "@/components/SharedImage";
-import SiteNav from "@/components/SiteNav";
 import { backLinkClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
@@ -61,7 +60,6 @@ export default async function BlogPost({ params }) {
 
   return (
     <div className="min-h-screen bg-black text-[#FAFDF6]">
-    <SiteNav current="blog" />
     <main className="max-w-2xl mx-auto px-6 pt-10 pb-16">
       <Link
         href="/blog"
