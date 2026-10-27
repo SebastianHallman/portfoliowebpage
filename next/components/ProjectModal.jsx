@@ -1,43 +1,110 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useEffectEvent, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import SharedImage from './SharedImage'
-import { accentButtonClass, imageFitClass, mediaFrameClass } from '@/lib/cardStyles'
+import { accentButtonClass, focusRing, imageFitClass, mediaFrameClass } from '@/lib/cardStyles'
 
-export default function ProjectModal({ project, onClose, writeupHref, imageTransitionName }) {
+const FOCUSABLE = 'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])'
+
+function shellStyle(name, active) {
+  return active ? { viewTransitionName: name } : undefined
+}
+
+export default function ProjectModal({
+  project,
+  onDismiss,
+  writeupHref,
+  imageTransitionName,
+  shellNamed = false,
+  onNavigate,
+}) {
+  const dialogRef = useRef(null)
+  const closeRef = useRef(null)
+  const dismiss = useEffectEvent(() => {
+    onDismiss?.()
+  })
+
   useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') onClose?.()
+    if (!project) return undefined
+    const dialog = dialogRef.current
+    closeRef.current?.focus({ preventScroll: true })
+
+    const onKey = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        dismiss()
+        return
+      }
+      if (event.key !== 'Tab' || !dialog) return
+      const items = [...dialog.querySelectorAll(FOCUSABLE)].filter((el) => el.offsetParent !== null || el === document.activeElement)
+      if (items.length === 0) {
+        event.preventDefault()
+        dialog.focus()
+        return
+      }
+      const first = items[0]
+      const last = items[items.length - 1]
+      const outside = !dialog.contains(document.activeElement)
+      if (outside) {
+        event.preventDefault()
+        ;(event.shiftKey ? last : first).focus()
+        return
+      }
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
     }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [onClose])
+
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [project])
 
   if (!project) return null
 
   const linkClassName = accentButtonClass
 
-  return (
+  return createPortal(
     <div
-      className='fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50'
-      onClick={onClose}
-      role='dialog'
-      aria-modal='true'
-      aria-labelledby='project-modal-title'
+      className='fixed inset-0 z-[60] flex items-center justify-center overscroll-contain bg-black/70 p-4 backdrop-blur-sm'
+      style={shellStyle('modal-backdrop', shellNamed)}
+      onClick={onDismiss}
     >
       <div
-        className='bg-slate-950 text-[#FAFDF6] rounded-2xl max-w-3xl w-full shadow-2xl border border-slate-800 relative max-h-[90vh] overflow-hidden flex flex-col min-h-0'
-        onClick={(e) => e.stopPropagation()}
+        ref={dialogRef}
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby='project-modal-title'
+        tabIndex={-1}
+        className='relative flex max-h-[90vh] w-full max-w-3xl min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 text-[#FAFDF6] shadow-2xl outline-none'
+        style={shellStyle('modal-panel', shellNamed)}
+        onClick={(event) => event.stopPropagation()}
+        onClickCapture={(event) => {
+          if (!(event.target instanceof Element)) return
+          const link = event.target.closest('a')
+          if (!link) return
+          if (shellNamed) {
+            event.preventDefault()
+            return
+          }
+          if (link.target !== '_blank') onNavigate?.()
+        }}
       >
         <button
-          onClick={onClose}
-          className='absolute top-3 right-3 text-slate-300 hover:text-white transition text-2xl leading-none w-10 h-10 grid place-items-center rounded-full hover:bg-white/5'
+          ref={closeRef}
+          type='button'
+          onClick={onDismiss}
+          className={`absolute top-3 right-3 z-10 grid h-10 w-10 place-items-center rounded-full text-2xl leading-none text-slate-300 transition hover:bg-white/5 hover:text-white ${focusRing}`}
           aria-label='Close project details'
         >
           X
         </button>
 
         {project.image && (
-          <div className='px-4 pt-4 shrink-0'>
+          <div className='shrink-0 px-4 pt-4'>
             <SharedImage name={imageTransitionName}>
               <div className={`aspect-video w-full overflow-hidden rounded-2xl ${mediaFrameClass(project.image, project.imageFit)}`}>
                 <img
@@ -50,7 +117,7 @@ export default function ProjectModal({ project, onClose, writeupHref, imageTrans
           </div>
         )}
 
-        <div className='p-6 pt-4 flex flex-col gap-4 flex-1 overflow-y-auto min-h-0'>
+        <div className='flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain p-6 pt-4'>
           <div>
             <div className='flex flex-wrap items-center gap-2'>
               <h3 id='project-modal-title' className='text-3xl font-bold'>
@@ -99,48 +166,29 @@ export default function ProjectModal({ project, onClose, writeupHref, imageTrans
               </Link>
             )}
             {project.links?.demo && (
-              <a
-                href={project.links.demo}
-                className={linkClassName}
-                target='_blank'
-                rel='noreferrer'
-              >
+              <a href={project.links.demo} className={linkClassName} target='_blank' rel='noreferrer'>
                 Demo
               </a>
             )}
             {project.links?.repo && (
-              <a
-                href={project.links.repo}
-                className={linkClassName}
-                target='_blank'
-                rel='noreferrer'
-              >
+              <a href={project.links.repo} className={linkClassName} target='_blank' rel='noreferrer'>
                 Repo
               </a>
             )}
             {project.links?.article && (
-              <a
-                href={project.links.article}
-                className={linkClassName}
-                target='_blank'
-                rel='noreferrer'
-              >
+              <a href={project.links.article} className={linkClassName} target='_blank' rel='noreferrer'>
                 Article
               </a>
             )}
             {project.links?.site && (
-              <a
-                href={project.links.site}
-                className={linkClassName}
-                target='_blank'
-                rel='noreferrer'
-              >
+              <a href={project.links.site} className={linkClassName} target='_blank' rel='noreferrer'>
                 Project website
               </a>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
