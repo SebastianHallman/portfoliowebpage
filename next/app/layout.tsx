@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import PageTransition from "@/components/PageTransition";
 import SiteNav from "@/components/SiteNav";
 import ViewTransitionStyles from "@/components/ViewTransitionStyles";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fraunces = Fraunces({
   subsets: ["latin"],
+  display: "swap",
+  axes: ["opsz"],
+  variable: "--font-fraunces",
 });
 
 export const metadata: Metadata = {
@@ -28,9 +31,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col font-sans">
         <ViewTransitionStyles />
         <SiteNav />
         <PageTransition>{children}</PageTransition>
