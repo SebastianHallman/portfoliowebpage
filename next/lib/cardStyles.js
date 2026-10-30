@@ -26,7 +26,7 @@ export function mediaFrameClass(src, value) {
   return "bg-slate-900";
 }
 
-export const pageTitleClass = "text-left text-4xl font-bold text-accent sm:text-5xl";
+export const pageTitleClass = "text-left text-4xl font-bold sm:text-5xl";
 
 export const surfaceCardClass = [
   "w-full overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 text-left text-[#FAFDF6]",

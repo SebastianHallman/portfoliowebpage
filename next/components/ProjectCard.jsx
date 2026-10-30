@@ -32,7 +32,7 @@ export default function ProjectCard({ project, onSelect, compact = false, href, 
       )}
       <div className={compact ? 'flex min-w-0 flex-col gap-2' : 'flex min-w-0 flex-col gap-2 p-4'}>
         <div className='flex flex-wrap items-center gap-2'>
-          <h3 className={compact ? 'text-lg font-bold' : 'text-2xl font-bold'}>{project.title}</h3>
+          <h3 className={compact ? 'accent-title text-lg font-bold' : 'accent-title text-2xl font-bold'}>{project.title}</h3>
           {project.badge && (
             <span className={`${tagChipClass} max-w-[9rem] uppercase tracking-wide`}>
               {project.badge}

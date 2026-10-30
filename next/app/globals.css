@@ -52,6 +52,13 @@ h6 {
   font-optical-sizing: auto;
   letter-spacing: -0.02em;
   line-height: 1.2;
+  /* Same off-white as nav and section text (#FAFDF6). */
+  color: #fafdf6;
+}
+
+/* Card titles stay on the accent. A class beats the element rule above,
+   which is unlayered so it wins over Tailwind text-* utilities. */
+.accent-title {
   color: var(--color-accent);
 }
 
