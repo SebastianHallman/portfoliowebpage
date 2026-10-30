@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Palanquin, Palanquin_Dark } from "next/font/google";
 import PageTransition from "@/components/PageTransition";
 import SiteNav from "@/components/SiteNav";
 import ViewTransitionStyles from "@/components/ViewTransitionStyles";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const palanquin = Palanquin({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-palanquin",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const palanquinDark = Palanquin_Dark({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-palanquin-dark",
 });
 
 export const metadata: Metadata = {
@@ -28,9 +32,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${palanquin.variable} ${palanquinDark.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col font-sans">
         <ViewTransitionStyles />
         <SiteNav />
         <PageTransition>{children}</PageTransition>
