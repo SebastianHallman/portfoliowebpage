@@ -12,7 +12,7 @@ export default function Hero() {
         <h1 className='text-left text-4xl font-bold lg:text-[64px]'>
           Hi! I&apos;m <span className='text-accent'>{'Sebastian H\u00E4llman'}</span>
         </h1>
-        <h2 className='text-left text-2xl font-bold text-accent lg:text-[32px]'>
+        <h2 className='text-left text-2xl font-bold lg:text-[32px]'>
           M.Sc. in Media Technology
         </h2>
         <p className='mt-4 text-left text-base leading-relaxed text-[#FAFDF6]/80 lg:text-lg'>

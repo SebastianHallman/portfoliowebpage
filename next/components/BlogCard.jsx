@@ -28,7 +28,7 @@ export default function BlogCard({ post }) {
             <span className="shrink-0 text-xs text-slate-500">{post.date}</span>
           ) : null}
         </div>
-        <h2 className="text-xl font-bold text-accent">{post.title}</h2>
+        <h2 className="accent-title text-xl font-bold">{post.title}</h2>
         {post.subtitle ? (
           <p className="mt-1 line-clamp-2 text-sm text-[#FAFDF6]/60">{post.subtitle}</p>
         ) : null}
