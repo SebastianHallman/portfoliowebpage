@@ -5,8 +5,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-palanquin), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-palanquin-dark), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -27,24 +27,70 @@ html {
 body {
   background: var(--color-black);
   color: var(--color-white);
+  line-height: 1.6;
 }
 
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-heading;
-  }
-
   code,
   kbd,
   samp,
   pre {
     @apply font-mono;
   }
+}
+
+/* Unlayered so tracking and leading win over Tailwind text-* utilities.
+   font-optical-sizing uses Fraunces' opsz axis (9–144). */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 620;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-weight: 650;
+  letter-spacing: -0.028em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-weight: 620;
+  letter-spacing: -0.022em;
+  line-height: 1.16;
+}
+
+h3,
+h4 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.28;
+}
+
+h5 {
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+h6 {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+article {
+  line-height: 1.7;
+}
+
+article :is(pre, code, kbd, samp) {
+  line-height: 1.55;
 }
 
 .site-header {

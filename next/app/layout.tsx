@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import { Palanquin, Palanquin_Dark } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import PageTransition from "@/components/PageTransition";
 import SiteNav from "@/components/SiteNav";
 import ViewTransitionStyles from "@/components/ViewTransitionStyles";
 import "./globals.css";
 
-const palanquin = Palanquin({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-palanquin",
+  variable: "--font-inter",
 });
 
-const palanquinDark = Palanquin_Dark({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-palanquin-dark",
+  axes: ["opsz"],
+  variable: "--font-fraunces",
 });
 
 export const metadata: Metadata = {
@@ -32,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${palanquin.variable} ${palanquinDark.variable} h-full antialiased`}
+      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <ViewTransitionStyles />
