@@ -52,6 +52,7 @@ h6 {
   font-optical-sizing: auto;
   letter-spacing: -0.02em;
   line-height: 1.2;
+  color: var(--color-accent);
 }
 
 h1 {
