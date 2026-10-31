@@ -56,8 +56,8 @@ h6 {
   color: #fafdf6;
 }
 
-/* Card titles stay on the accent. A class beats the element rule above,
-   which is unlayered so it wins over Tailwind text-* utilities. */
+/* Beats the unlayered heading color above. Card titles, blog and project
+   page titles, and MDX headings use this. Tailwind text-* cannot. */
 .accent-title {
   color: var(--color-accent);
 }

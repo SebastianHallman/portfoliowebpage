@@ -110,7 +110,7 @@ export default async function ProjectPage({
         )}
       </div>
 
-      <h1 className={`${pageTitleClass} mb-2`}>{project.title}</h1>
+      <h1 className={`${pageTitleClass} accent-title mb-2`}>{project.title}</h1>
       <p className="mb-6 text-lg text-[#FAFDF6]/65">{project.summary}</p>
 
       {project.stack.length > 0 && (
