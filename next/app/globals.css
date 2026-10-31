@@ -62,6 +62,11 @@ h6 {
   color: var(--color-accent);
 }
 
+/* Blog post body subheadings match the post title. Project write-ups do not. */
+.blog-post :is(h2, h3, h4, h5, h6) {
+  color: var(--color-accent);
+}
+
 h1 {
   font-weight: 650;
   letter-spacing: -0.028em;
