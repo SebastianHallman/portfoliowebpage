@@ -90,7 +90,7 @@ export default async function BlogPost({ params }) {
         </time>
       </div>
   
-      <h1 className={`${pageTitleClass} mb-2`}>
+      <h1 className={`${pageTitleClass} accent-title mb-2`}>
         {post.title}
       </h1>
       <p className="mb-10 text-lg text-[#FAFDF6]/65">
