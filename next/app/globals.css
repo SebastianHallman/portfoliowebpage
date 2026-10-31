@@ -56,14 +56,9 @@ h6 {
   color: #fafdf6;
 }
 
-/* Beats the unlayered heading color above. Project cards, blog cards,
-   and the blog post title stay on the accent. Tailwind text-* cannot. */
+/* Beats the unlayered heading color above. Card titles, blog and project
+   page titles, and MDX headings use this. Tailwind text-* cannot. */
 .accent-title {
-  color: var(--color-accent);
-}
-
-/* Blog post body subheadings match the post title. Project write-ups do not. */
-.blog-post :is(h2, h3, h4, h5, h6) {
   color: var(--color-accent);
 }
 

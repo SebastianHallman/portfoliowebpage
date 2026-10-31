@@ -99,7 +99,7 @@ export default async function BlogPost({ params }) {
   
       <hr className="mb-10 border-slate-800" />
   
-      <article className="blog-post">
+      <article>
         <Content components={components} />
       </article>
     </main>
