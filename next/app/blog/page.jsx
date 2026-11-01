@@ -1,6 +1,7 @@
 import BlogCard from '@/components/BlogCard'
 import { pageShellClass, pageTitleClass } from '@/lib/cardStyles'
 import { getPosts } from '@/lib/posts'
+import { defaultOgImage } from '@/lib/seo'
 
 export const metadata = {
   title: "Blog",
@@ -15,6 +16,7 @@ export const metadata = {
       "Thoughts and knowledge shared by Sebastian Hällman.",
     url: "/blog",
     type: "website",
+    images: [defaultOgImage],
   },
 };
 

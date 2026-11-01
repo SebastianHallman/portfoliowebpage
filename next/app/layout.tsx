@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import PageTransition from "@/components/PageTransition";
 import SiteNav from "@/components/SiteNav";
 import ViewTransitionStyles from "@/components/ViewTransitionStyles";
+import { defaultOgImage } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,6 +27,13 @@ export const metadata: Metadata = {
   },
   description:
     "Portfolio of Sebastian Hällman — M.Sc. Media Technology, developer and designer.",
+  openGraph: {
+    images: [defaultOgImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [defaultOgImage],
+  },
 };
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

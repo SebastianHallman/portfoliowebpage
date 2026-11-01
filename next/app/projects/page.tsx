@@ -2,6 +2,7 @@ import ProjectCatalog from "@/components/ProjectCatalog";
 import { projectsData } from "@/data/projectsData";
 import { pageShellClass, pageTitleClass } from "@/lib/cardStyles";
 import { getProjectLinkMap, getProjects, toHomepageCard } from "@/lib/projects";
+import { defaultOgImage } from "@/lib/seo";
 
 export const metadata = {
   title: "Projects",
@@ -14,6 +15,7 @@ export const metadata = {
     description: "Selected work by Sebastian Hällman.",
     url: "/projects",
     type: "website",
+    images: [defaultOgImage],
   },
 };
 
