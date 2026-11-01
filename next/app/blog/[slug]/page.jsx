@@ -5,6 +5,7 @@ import * as runtime from "react/jsx-runtime";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getPosts, getPost } from "@/lib/posts";
+import { defaultOgImage } from "@/lib/seo";
 import SharedImage from "@/components/SharedImage";
 import { backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }) {
   
     const title = `${post.title} — Sebastian Hällman`;
     const description = post.subtitle || post.excerpt || "";
-    const images = post.image ? [post.image] : [];
+    const images = post.image ? [post.image] : [defaultOgImage];
   
     return {
       title: post.title,
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }) {
         images,
       },
       twitter: {
-        card: post.image ? "summary_large_image" : "summary",
+        card: "summary_large_image",
         title,
         description,
         images,

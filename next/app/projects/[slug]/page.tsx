@@ -5,6 +5,7 @@ import * as runtime from "react/jsx-runtime";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getProject, getProjects } from "@/lib/projects";
+import { defaultOgImage } from "@/lib/seo";
 import SharedImage from "@/components/SharedImage";
 import { accentButtonClass, backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
@@ -30,7 +31,7 @@ export async function generateMetadata({
 
   const title = `${project.title} — Sebastian Hällman`;
   const description = project.summary;
-  const images = project.cover ? [project.cover] : [];
+  const images = project.cover ? [project.cover] : [defaultOgImage];
 
   return {
     title: project.title,
@@ -46,7 +47,7 @@ export async function generateMetadata({
       images,
     },
     twitter: {
-      card: project.cover ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title,
       description,
       images,
