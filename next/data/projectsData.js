@@ -7,8 +7,10 @@ const lerryImg = '/img/Lerry.png';
 const chess3dImg = '/img/3dchess.png'
 const thesisImg = '/img/thesis.jpg'
 const speedyWriterImg = '/img/speedyWriter.png'
+const roslagensHundFriluftslivImg = '/img/roshund.png'
 
 export const projectsData = [
+  
   {
     id: 'calmakit-masters-thesis',
     featured: true,
@@ -68,6 +70,24 @@ export const projectsData = [
     imagePosition: 'center 35%',
     links: {
       site: 'https://mittschack.sebastianhallman.com',
+    },
+  },
+  {
+    id: 'roslagens-hund-friluftsliv',
+    featured: true,
+    title: 'Roslagens Hund & Friluftsliv',
+    subtitle: 'A custom Shopify storefront for a local shop',
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Shopify Storefront API'],
+    collaborators: [],
+    descriptionShort:
+      'A mobile-friendly pet and outdoor webshop with a custom frontend and content managed in Shopify.',
+    descriptionLong:
+      'Roslagens Hund & Friluftsliv is a local pet and outdoor webshop in Norrtälje, Sweden. I built a custom Shopify storefront for them using Next.js and React, with a mobile-first design and Tailwind CSS, to replace their own website that was limited by the Shopify theme. The shop features a clean product catalog, easy navigation, and a seamless checkout experience, all while allowing the client to manage content through Shopify.',
+    image: roslagensHundFriluftslivImg,
+    imageFit: 'contain',
+    imagePosition: 'center 35%',
+    links: {
+      site: 'https://roslagenshundochfriluftsliv.se',
     },
   },
   {

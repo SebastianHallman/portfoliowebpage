@@ -1,0 +1,29 @@
+---
+title: Roslagens Hund & Friluftsliv
+summary: A custom Shopify storefront for a local pet and outdoor shop, built around an owner who needs to manage the content without code.
+stack:
+  - Next.js
+  - React
+  - TypeScript
+  - Tailwind CSS
+  - Shopify Storefront API
+links: {}
+featured: true
+cover: /img/roshund.png
+---
+
+My mum runs Roslagens Hund & Friluftsliv, a local shop for pets and outdoor activities. She created her own design by adapting a Shopify theme and wanted to make something unique, but the site lacked a clear structure and was difficult to navigate. I had already thought about building a custom storefront for her, so when she said she wanted to redesign the site, I offered to help. The goal was to create a custom storefront that would be easy for her to manage through Shopify while also providing a better shopping experience for her customers. I used my newly acquired knowledge of Next.js and the Shopify Storefront API to build a custom frontend that would be easy to use and maintain.
+
+## A storefront built around the shop
+
+Customers can browse categories, search for products, view product details, and manage their cart before continuing to Shopify checkout. The storefront is in Swedish, with prices in SEK and a layout designed for both phones and larger screens. The online store has a unique delivery system that lets customers choose to pick up their orders at designated locations. This was hard to convey with the previous design, but pickup information is now clearly presented on the product pages for items available for pickup.
+
+## Keeping everyday updates in Shopify
+
+The frontend handles the layout and interactions, while Shopify holds the products, prices, stock, and collections. Navigation and homepage content also come from Shopify, including text, images, and selected products and categories.
+
+That split is central to the project. My mum was worried about having to manage a custom storefront herself because she didn't want to deal with code. Making the homepage and navigation editable in Shopify lets her manage the content without needing to touch code.
+
+## Custom frontend, Shopify checkout
+
+I chose a separate Next.js frontend to control the presentation and SEO while keeping Shopify responsible for commerce. The cart uses Shopify's Cart API, and checkout continues through Shopify rather than a payment flow built from scratch.
