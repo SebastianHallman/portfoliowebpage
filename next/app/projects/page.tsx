@@ -1,8 +1,8 @@
-import Link from "next/link";
-
 import ProjectCatalog from "@/components/ProjectCatalog";
 import { projectsData } from "@/data/projectsData";
+import { pageShellClass, pageTitleClass } from "@/lib/cardStyles";
 import { getProjectLinkMap, getProjects, toHomepageCard } from "@/lib/projects";
+import { defaultOgImage } from "@/lib/seo";
 
 export const metadata = {
   title: "Projects",
@@ -15,6 +15,7 @@ export const metadata = {
     description: "Selected work by Sebastian Hällman.",
     url: "/projects",
     type: "website",
+    images: [defaultOgImage],
   },
 };
 
@@ -24,16 +25,9 @@ const knownIds = new Set(projectsData.map((project) => project.id));
 export default function ProjectsList() {
   return (
     <div className="bg-black min-h-screen text-[#FAFDF6]">
-      <div className="w-[90%] max-w-6xl mx-auto py-16">
-        <Link
-          href="/"
-          className="text-sm text-[#EAE151] opacity-60 hover:opacity-100 transition mb-10 inline-block"
-        >
-          ← Back to portfolio
-        </Link>
-
-        <h1 className="text-5xl font-bold text-[#DDD92A] mb-4">Projects</h1>
-        <p className="text-lg text-slate-400 mb-12">
+      <main className={`${pageShellClass} pb-16 pt-10`}>
+        <h1 className={`${pageTitleClass} mb-4`}>Projects</h1>
+        <p className="mb-12 text-lg text-slate-400">
           Selected work. More coming soon.
         </p>
 
@@ -46,7 +40,7 @@ export default function ProjectsList() {
             .filter((project) => !project.featured && !knownIds.has(project.slug))
             .map(toHomepageCard)}
         />
-      </div>
+      </main>
     </div>
   );
 }

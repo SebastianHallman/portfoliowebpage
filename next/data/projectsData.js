@@ -29,6 +29,7 @@ export const projectsData = [
       'CalmaKit is a wearable band and Flutter app I designed for people with Cerebral Palsy who need more ways to ease muscle activity outside the clinic. It delivers personalized, shape-shifting pressure patterns. I evaluated it on my own body: perceived stiffness dropped and body-map data showed eased spasticity. The thesis also maps what still needs controlled follow-up research.',
     dates: { start: '2025-01-01', end: '2025-12-31' },
     image: thesisImg,
+    imageFit: 'cover',
     links: {
       article: 'https://www.diva-portal.org/smash/record.jsf?pid=diva2:2037729',
     },
@@ -45,6 +46,7 @@ export const projectsData = [
     descriptionLong:
       'MyMathBook is a fullstack editor for writing mathematics together in the browser. It has WYSIWYG LaTeX so you can write equations without markup, live multiplayer editing, and accounts so documents stay yours. It is free with 10 docs per account at mymathbook.sebastianhallman.com.',
     image: myMathBookImg,
+    imageFit: 'contain',
     links: {
       site: 'https://mymathbook.sebastianhallman.com',
     },
@@ -62,6 +64,7 @@ export const projectsData = [
     descriptionLong:
       'Mitt Schack is a mobile app I am building for Swedish chess players and club members. It brings together data from the Swedish Chess Federation: follow your rating history, upcoming matches, tournament results, and club competitions. You can also search players, explore leaderboards, and replay games when notation is available. The user can connect their chess player ID to get relevant information with ease, and this is all done locally. No account required. Built with React Native, Expo, and TypeScript, the app is coming to Android.',
     image: '/img/mitt-schack.png',
+    imageFit: 'contain',
     imagePosition: 'center 35%',
     links: {
       site: 'https://mittschack.sebastianhallman.com',
@@ -79,6 +82,7 @@ export const projectsData = [
     descriptionLong:
       'Speedy Writer is a free, open-source overlay for Windows that suggests word completions as you type anywhere on the system. Up to ten predictions, F1–F10 to accept, on-device learning, English and Swedish wordlists, and a customizable UI — nothing is sent to the cloud. Inspired by Eurovocs Skippy.',
     image: speedyWriterImg,
+    imageFit: 'contain',
     imagePosition: 'left top',
     links: {
       site: 'https://sebastianhallman.github.io/word_predictor/',
@@ -97,6 +101,7 @@ export const projectsData = [
     descriptionLong:
       'A React and Three.js chess client connected to Lichess for OAuth, live play, and puzzles. Move validation, piece animations, and a full HUD sit on top of a 3D board rather than a flat grid. Play it at 3dchess.d1sabl3d.com; the client is open on GitHub.',
     image: chess3dImg,
+    imageFit: 'contain',
     imagePosition: 'center 55%',
     imageScale: 1.1,
     links: {
@@ -116,6 +121,7 @@ export const projectsData = [
       'Gnome Hunt is a social hide-and-seek experience built in Unity. One player searches in VR while others collaborate on a shared screen to hide and misdirect. We focused on intuitive interactions, readable feedback loops, and cozy vibes.',
     dates: { start: '2024-09-05', end: '2024-11-04' },
     image: gnomeHuntImg,
+    imageFit: 'cover',
     links: {
       site: 'https://sites.google.com/view/gnomehunt',
     },
@@ -132,6 +138,7 @@ export const projectsData = [
       'Winter Window is an immersive installation built with Godot. Using HTC Vive for interaction and Intel RealSense for depth sensing, one player can play with virtual snow while spectators can look into the virtual world with a camera.',
     dates: { start: '2024-11-12', end: '2024-12-13' },
     image: winterWindowImg,
+    imageFit: 'cover',
     links: {
       site: 'https://sites.google.com/view/winterwindow/home',
     },
@@ -147,6 +154,7 @@ export const projectsData = [
     descriptionLong:
       'A coding test for Lennart, a company building an AI accounting service. I built a visual front-end in React and a bookkeeping verification validator in PHP. As requested, I pair-programmed with AI (Codex) to demonstrate how I work with AI tools during development.',
     image: lerryImg,
+    imageFit: 'contain',
     imagePosition: 'left top',
     imageScale: 1.22,
   },
@@ -162,6 +170,7 @@ export const projectsData = [
       'Being a gamer at heart and a ton of hours spent in Minecraft, I wanted to create my own voxel terrain generator from scratch in Unity. The project features procedural terrain generation using Perlin noise and a chunk based system for generating new areas on command. The focus of the project was on world generation, so performance optimizations has not been implemented.',
     dates: { start: '2023-04-24', end: '2023-05-18' },
     image: voxelImg,
+    imageFit: 'cover',
   },
   {
     id: 'guesswhat-imdb',
@@ -174,5 +183,6 @@ export const projectsData = [
     descriptionLong:
       'GuessWhat is a Vue-based quiz that fetches movie metadata via public APIs and tracks sessions and leaderboards with Firebase. Emphasis on quick rounds, responsive UI, and fair tie-breaking logic for close ratings.',
     image: guessWhatImg,
+    imageFit: 'contain',
   },
 ]

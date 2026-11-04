@@ -6,7 +6,9 @@ Copy `_template.mdx` to `<slug>.mdx`. The slug is the filename. Homepage cards i
 
 ## Frontmatter
 
-`title`, `summary`, `stack`, `links` (`github` / `live` / `play` and any other URL), `cover`, `featured`, `date`.
+`title`, `summary`, `stack`, `links` (`github` / `live` / `play` and any other URL), `cover`, `imageFit` (`cover` or `contain`, default `cover`), `featured`, `date`.
+
+`cover` is the default for photos. Use `contain` for a logo or screenshot where a 16:9 crop would cut off the artwork. Homepage cards in `data/projectsData.js` use the same `imageFit` field.
 
 ## Empty body vs write-up
 

@@ -5,6 +5,9 @@ import * as runtime from "react/jsx-runtime";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getProject, getProjects } from "@/lib/projects";
+import { defaultOgImage } from "@/lib/seo";
+import SharedImage from "@/components/SharedImage";
+import { accentButtonClass, backLinkClass, imageFitClass, mediaFrameClass, pageShellClass, pageTitleClass, tagChipClass } from "@/lib/cardStyles";
 import "highlight.js/styles/github-dark.css";
 import { components } from "@/mdx-components";
 
@@ -28,7 +31,7 @@ export async function generateMetadata({
 
   const title = `${project.title} — Sebastian Hällman`;
   const description = project.summary;
-  const images = project.cover ? [project.cover] : [];
+  const images = project.cover ? [project.cover] : [defaultOgImage];
 
   return {
     title: project.title,
@@ -44,7 +47,7 @@ export async function generateMetadata({
       images,
     },
     twitter: {
-      card: project.cover ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title,
       description,
       images,
@@ -78,21 +81,26 @@ export default async function ProjectPage({
   const links = Object.entries(project.links).filter(([, href]) => href);
 
   return (
-    <main className="max-w-2xl mx-auto px-6 py-16 text-[#FAFDF6]">
+    <div className="min-h-screen bg-black text-[#FAFDF6]">
+    <main className={`${pageShellClass} pt-10 pb-16`}>
       <Link
         href="/projects"
-        className="text-sm text-[#EAE151] opacity-60 hover:opacity-100 transition mb-10 inline-block"
+        className={backLinkClass}
       >
         ← All projects
       </Link>
 
       {project.cover && (
-        <img
-          src={project.cover}
-          alt={project.title}
-          className="w-full rounded-2xl shadow-lg shadow-black/40 mb-8"
-          loading="eager"
-        />
+        <SharedImage name={`project-${project.slug}`}>
+          <div className={`mb-8 aspect-video overflow-hidden rounded-2xl shadow-lg shadow-black/40 ${mediaFrameClass(project.cover, project.imageFit)}`}>
+            <img
+              src={project.cover}
+              alt={project.title}
+              className={`h-full w-full ${imageFitClass(project.imageFit)}`}
+              loading="eager"
+            />
+          </div>
+        </SharedImage>
       )}
 
       <div className="flex items-center gap-3 mb-4">
@@ -103,20 +111,17 @@ export default async function ProjectPage({
         )}
       </div>
 
-      <h1 className="text-4xl text-[#EAE151] font-bold mb-2">{project.title}</h1>
-      <p className="text-lg text-[#EAE151] opacity-70 mb-6">{project.summary}</p>
+      <h1 className={`${pageTitleClass} accent-title mb-2`}>{project.title}</h1>
+      <p className="mb-6 text-lg text-[#FAFDF6]/65">{project.summary}</p>
 
       {project.stack.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-6">
+        <ul className="flex flex-wrap gap-1.5 mb-6">
           {project.stack.map((item) => (
-            <span
-              key={item}
-              className="text-xs bg-[#DDD92A] text-black px-2 py-1 rounded-full font-semibold"
-            >
+            <li key={item} className={`${tagChipClass} max-w-none`}>
               {item}
-            </span>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
 
       {links.length > 0 && (
@@ -125,7 +130,7 @@ export default async function ProjectPage({
             <a
               key={key}
               href={href}
-              className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold ring-1 ring-[#DDD92A] bg-[#DDD92A]/10 text-[#FAFDF6] hover:bg-[#DDD92A] hover:text-black transition"
+              className={accentButtonClass}
               target="_blank"
               rel="noreferrer"
             >
@@ -135,11 +140,12 @@ export default async function ProjectPage({
         </div>
       )}
 
-      <hr className="border-slate-800 mb-10" />
+      <hr className="mb-10 border-slate-800" />
 
       <article>
         <Content components={components} />
       </article>
     </main>
+    </div>
   );
 }

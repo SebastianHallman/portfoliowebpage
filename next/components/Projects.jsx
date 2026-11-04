@@ -1,5 +1,6 @@
 ﻿'use client';
 import ProjectCatalog from './ProjectCatalog'
+import { pageShellClass, pageTitleClass } from '@/lib/cardStyles'
 
 /**
  * @param {{ projectLinks?: Record<string, string>, extraFeatured?: object[], extraArchive?: object[] }} props
@@ -12,15 +13,15 @@ export default function Projects({
   return (
     <div
       id="projects"
-      className='min-h-screen w-[90%] text-[#FAFDF6] flex justify-center mx-auto items-center flex-col snap-start relative py-16 lg:py-8'
+      className={`${pageShellClass} relative flex flex-col items-start py-16 text-[#FAFDF6] lg:py-20`}
     >
-      <h2 className='text-4xl font-bold lg:text-[64px] text-center text-[#DDD92A] lg:text-left p-6'>
+      <h2 className={pageTitleClass}>
         Projects
       </h2>
-      <p className='text-lg lg:text-xl font-medium lg:max-w-3xl p-6 text-center lg:text-left'>
+      <p className='mb-8 mt-4 text-left text-lg text-slate-400'>
         Look at my proudest work so far.
       </p>
-      <div className='w-full px-6 pb-6 flex flex-col'>
+      <div className='flex w-full flex-col'>
         <ProjectCatalog
           projectLinks={projectLinks}
           extraFeatured={extraFeatured}
