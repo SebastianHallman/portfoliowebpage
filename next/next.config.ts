@@ -13,7 +13,22 @@ const withMDX = createMDX({
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/resume",
+        destination:
+          "https://raw.githubusercontent.com/SebastianHallman/Resume/main/resume.pdf",
+        permanent: false,
+      },
+      {
+        source: "/cv",
+        destination:
+          "https://raw.githubusercontent.com/SebastianHallman/Resume/main/resume.pdf",
+        permanent: false,
+      },
+    ];
+  },
   experimental: {
     agentFeedback: true,
     agentUpgrade: "security",
