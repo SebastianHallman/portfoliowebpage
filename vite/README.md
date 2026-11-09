@@ -1,29 +1,23 @@
-# Portfolio
+# Archived portfolio — React + Vite
 
-Webbprojektet finns i `vite/`. Kör kommandona från den mappen:
+This is the previous implementation of Sebastian Hällman's portfolio. It is **archived and unused**, retained for reference.
 
-```bash
-cd vite
-npm ci
-npm run dev
-```
+The active website lives in [`../next/`](../next/README.md). Follow the [root README](../README.md) to run and maintain the current site.
 
-`npm run build` bygger sidan till `vite/dist/` och `npm run lint` kontrollerar koden.
-Netlify använder `vite/` som basmapp och publicerar `dist/` därifrån.
+## Historical setup
 
-## React + Vite
+This folder has its own `package.json` and lockfile. Its historical commands, run from this directory, are:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+| Command | Purpose |
+| --- | --- |
+| `npm ci` | Install this archive's dependencies |
+| `npm run dev` | Start the Vite development server |
+| `npm run lint` | Run the archive's ESLint checks |
+| `npm run build` | Build the archive into `dist/` |
+| `npm run preview` | Preview an existing archive build |
 
-Currently, two official plugins are available:
+The local `netlify.toml` describes the old SPA deployment. The repository root configuration now builds `next/` instead.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Archived chatbot
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The old portfolio includes a browser-side OpenRouter chatbot. Do not configure it with a provider secret: `VITE_` environment values are exposed to the browser. Reintroducing the chatbot would require server-side credential handling and a fresh review.

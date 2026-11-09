@@ -7,10 +7,21 @@ const lerryImg = '/img/Lerry.png';
 const chess3dImg = '/img/3dchess.png'
 const thesisImg = '/img/thesis.jpg'
 const speedyWriterImg = '/img/speedyWriter.png'
-const roslagensHundFriluftslivImg = '/img/roshund.png'
 
 export const projectsData = [
-  
+  {
+    id: 'roslagens-hund-friluftsliv',
+    featured: false,
+    title: 'Roslagens Hund & Friluftsliv',
+    subtitle: 'A custom Shopify storefront for a local shop',
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Shopify Storefront API'],
+    collaborators: [],
+    descriptionShort:
+      'A mobile-friendly pet and outdoor webshop with a custom frontend and content managed in Shopify.',
+    descriptionLong:
+      'I am building a new storefront for my mum\'s pet and outdoor shop, Roslagens Hund & Friluftsliv. Built with Next.js and Shopify, it brings together product categories, search, product details, and a cart that continues to Shopify checkout. A key goal is that she can manage products, navigation, and homepage content in Shopify without editing code or deploying the site. The storefront is in Swedish, with prices in SEK and clear notices for pickup-only products.',
+    links: {},
+  },
   {
     id: 'calmakit-masters-thesis',
     featured: true,
@@ -70,24 +81,6 @@ export const projectsData = [
     imagePosition: 'center 35%',
     links: {
       site: 'https://mittschack.sebastianhallman.com',
-    },
-  },
-  {
-    id: 'roslagens-hund-friluftsliv',
-    featured: true,
-    title: 'Roslagens Hund & Friluftsliv',
-    subtitle: 'A custom Shopify storefront for a local shop',
-    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Shopify Storefront API'],
-    collaborators: [],
-    descriptionShort:
-      'A mobile-friendly pet and outdoor webshop with a custom frontend and content managed in Shopify.',
-    descriptionLong:
-      'Roslagens Hund & Friluftsliv is a local pet and outdoor webshop in Norrtälje, Sweden. I built a custom Shopify storefront for them using Next.js and React, with a mobile-first design and Tailwind CSS, to replace their own website that was limited by the Shopify theme. The shop features a clean product catalog, easy navigation, and a seamless checkout experience, all while allowing the client to manage content through Shopify.',
-    image: roslagensHundFriluftslivImg,
-    imageFit: 'contain',
-    imagePosition: 'center 35%',
-    links: {
-      site: 'https://roslagenshundochfriluftsliv.se',
     },
   },
   {
