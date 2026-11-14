@@ -10,6 +10,25 @@ const speedyWriterImg = '/img/speedyWriter.png'
 
 export const projectsData = [
   {
+    id: 'roslagens-bowlingklubb',
+    featured: false,
+    title: 'Roslagens Bowlingklubb',
+    subtitle: 'A club website for a local bowling community',
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express', 'MySQL'],
+    collaborators: [],
+    descriptionShort:
+      'A responsive Swedish bowling club website with team information, club news, and a tournament calendar.',
+    descriptionLong:
+      'I am building a website for Roslagens Bowlingklubb to help members and new players find information about the club, its teams, and upcoming tournaments. The Swedish site combines a responsive React frontend with an Express and MySQL backend. An admin area lets club administrators manage content, with account invitations and session-based authentication.',
+    image: '/img/roslagens-bowlingklubb.png',
+    imageFit: 'cover',
+    imagePosition: 'center top',
+    links: {
+      site: 'https://roslagensbwk.sebastianhallman.com',
+      repo: 'https://github.com/SebastianHallman/roslagensbwk',
+    },
+  },
+  {
     id: 'roslagens-hund-friluftsliv',
     featured: false,
     title: 'Roslagens Hund & Friluftsliv',
