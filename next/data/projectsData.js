@@ -65,6 +65,8 @@ export const projectsData = [
       'A mobile-friendly pet and outdoor webshop with a custom frontend and content managed in Shopify.',
     descriptionLong:
       'I am building a new storefront for my mum\'s pet and outdoor shop, Roslagens Hund & Friluftsliv. Built with Next.js and Shopify, it brings together product categories, search, product details, and a cart that continues to Shopify checkout. A key goal is that she can manage products, navigation, and homepage content in Shopify without editing code or deploying the site. The storefront is in Swedish, with prices in SEK and clear notices for pickup-only products.',
+    image: '/img/roshund.png',
+    imageFit: 'contain',
     links: {},
   },
 
