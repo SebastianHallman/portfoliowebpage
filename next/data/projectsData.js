@@ -9,38 +9,7 @@ const thesisImg = '/img/thesis.jpg'
 const speedyWriterImg = '/img/speedyWriter.png'
 
 export const projectsData = [
-  {
-    id: 'roslagens-bowlingklubb',
-    featured: false,
-    title: 'Roslagens Bowlingklubb',
-    subtitle: 'A club website for a local bowling community',
-    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express', 'MySQL'],
-    collaborators: [],
-    descriptionShort:
-      'A responsive Swedish bowling club website with team information, club news, and a tournament calendar.',
-    descriptionLong:
-      'I am building a website for Roslagens Bowlingklubb to help members and new players find information about the club, its teams, and upcoming tournaments. The Swedish site combines a responsive React frontend with an Express and MySQL backend. An admin area lets club administrators manage content, with account invitations and session-based authentication.',
-    image: '/img/roslagens-bowlingklubb.png',
-    imageFit: 'cover',
-    imagePosition: 'center top',
-    links: {
-      site: 'https://roslagensbwk.sebastianhallman.com',
-      repo: 'https://github.com/SebastianHallman/roslagensbwk',
-    },
-  },
-  {
-    id: 'roslagens-hund-friluftsliv',
-    featured: false,
-    title: 'Roslagens Hund & Friluftsliv',
-    subtitle: 'A custom Shopify storefront for a local shop',
-    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Shopify Storefront API'],
-    collaborators: [],
-    descriptionShort:
-      'A mobile-friendly pet and outdoor webshop with a custom frontend and content managed in Shopify.',
-    descriptionLong:
-      'I am building a new storefront for my mum\'s pet and outdoor shop, Roslagens Hund & Friluftsliv. Built with Next.js and Shopify, it brings together product categories, search, product details, and a cart that continues to Shopify checkout. A key goal is that she can manage products, navigation, and homepage content in Shopify without editing code or deploying the site. The storefront is in Swedish, with prices in SEK and clear notices for pickup-only products.',
-    links: {},
-  },
+  
   {
     id: 'calmakit-masters-thesis',
     featured: true,
@@ -66,6 +35,39 @@ export const projectsData = [
       article: 'https://www.diva-portal.org/smash/record.jsf?pid=diva2:2037729',
     },
   },
+  {
+    id: 'roslagens-bowlingklubb',
+    featured: true,
+    title: 'Roslagens Bowlingklubb',
+    subtitle: 'A club website for a local bowling community',
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express', 'Resend', 'MySQL'],
+    collaborators: [],
+    descriptionShort:
+      'A responsive Swedish bowling club website with team information, club news, and a tournament calendar.',
+    descriptionLong:
+      'I am building a website for Roslagens Bowlingklubb to help members and new players find information about the club, its teams, and upcoming tournaments. The Swedish site combines a responsive React frontend with an Express and MySQL backend. An admin area lets club administrators manage content, with account invitations and session-based authentication.',
+    image: '/img/roslagens-bowlingklubb.png',
+    imageFit: 'cover',
+    imagePosition: 'center top',
+    links: {
+      site: 'https://roslagensbwk.sebastianhallman.com',
+      repo: 'https://github.com/SebastianHallman/roslagensbwk',
+    },
+  },
+  {
+    id: 'roslagens-hund-friluftsliv',
+    featured: true,
+    title: 'Roslagens Hund & Friluftsliv',
+    subtitle: 'A custom Shopify storefront for a local shop',
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Shopify Storefront API'],
+    collaborators: [],
+    descriptionShort:
+      'A mobile-friendly pet and outdoor webshop with a custom frontend and content managed in Shopify.',
+    descriptionLong:
+      'I am building a new storefront for my mum\'s pet and outdoor shop, Roslagens Hund & Friluftsliv. Built with Next.js and Shopify, it brings together product categories, search, product details, and a cart that continues to Shopify checkout. A key goal is that she can manage products, navigation, and homepage content in Shopify without editing code or deploying the site. The storefront is in Swedish, with prices in SEK and clear notices for pickup-only products.',
+    links: {},
+  },
+
   {
     id: 'mymathbook',
     featured: true,
@@ -104,7 +106,7 @@ export const projectsData = [
   },
   {
     id: 'speedy-writer',
-    featured: true,
+    featured: false,
     title: 'Speedy Writer',
     subtitle: 'Desktop word prediction overlay',
     tech: ['Python', 'Windows', 'Assistive software', 'Codex'],
